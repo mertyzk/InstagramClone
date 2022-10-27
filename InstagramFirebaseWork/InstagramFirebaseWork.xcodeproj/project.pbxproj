@@ -9,26 +9,24 @@
 /* Begin PBXBuildFile section */
 		E23195E1290680B6008BF8CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23195E0290680B6008BF8CA /* AppDelegate.swift */; };
 		E23195E3290680B6008BF8CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23195E2290680B6008BF8CA /* SceneDelegate.swift */; };
-		E23195E5290680B6008BF8CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23195E4290680B6008BF8CA /* ViewController.swift */; };
-		E23195E8290680B6008BF8CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E23195E6290680B6008BF8CA /* Main.storyboard */; };
 		E23195EA290680B7008BF8CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E23195E9290680B7008BF8CA /* Assets.xcassets */; };
-		E23195ED290680B7008BF8CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E23195EB290680B7008BF8CA /* LaunchScreen.storyboard */; };
 		E23195FB29068488008BF8CA /* IFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23195FA29068488008BF8CA /* IFTabBarController.swift */; };
 		E23195FD29068DB4008BF8CA /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23195FC29068DB4008BF8CA /* FeedVC.swift */; };
 		E23195FF29068DBF008BF8CA /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23195FE29068DBF008BF8CA /* SearchVC.swift */; };
 		E231960129068DD2008BF8CA /* ImageSelectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231960029068DD2008BF8CA /* ImageSelectorVC.swift */; };
 		E231960329068DE1008BF8CA /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231960229068DE1008BF8CA /* NotificationsVC.swift */; };
 		E231960529068DED008BF8CA /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231960429068DED008BF8CA /* ProfileVC.swift */; };
+		E2BC577A290A77A600849714 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BC5779290A77A600849714 /* FeedCell.swift */; };
+		E2BC577F290A784300849714 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BC577E290A784300849714 /* UIViewController+Ext.swift */; };
+		E2BC5781290A785000849714 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BC5780290A785000849714 /* UIButton+Ext.swift */; };
+		E2BC5783290A785900849714 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BC5782290A785900849714 /* UIView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E23195DD290680B6008BF8CA /* InstagramFirebaseWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramFirebaseWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E23195E0290680B6008BF8CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E23195E2290680B6008BF8CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E23195E4290680B6008BF8CA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E23195E7290680B6008BF8CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E23195E9290680B7008BF8CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E23195EC290680B7008BF8CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E23195EE290680B7008BF8CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E23195FA29068488008BF8CA /* IFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFTabBarController.swift; sourceTree = "<group>"; };
 		E23195FC29068DB4008BF8CA /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
@@ -36,6 +34,10 @@
 		E231960029068DD2008BF8CA /* ImageSelectorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectorVC.swift; sourceTree = "<group>"; };
 		E231960229068DE1008BF8CA /* NotificationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsVC.swift; sourceTree = "<group>"; };
 		E231960429068DED008BF8CA /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		E2BC5779290A77A600849714 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		E2BC577E290A784300849714 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		E2BC5780290A785000849714 /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
+		E2BC5782290A785900849714 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,18 +70,14 @@
 		E23195DF290680B6008BF8CA /* InstagramFirebaseWork */ = {
 			isa = PBXGroup;
 			children = (
+				E2BC5784290A799F00849714 /* AppResources */,
 				E23195F9290683A4008BF8CA /* Model */,
 				E23195F8290683A2008BF8CA /* View */,
 				E23195F729068398008BF8CA /* ViewModel */,
 				E23195F629068395008BF8CA /* Controller */,
 				E23195F529068392008BF8CA /* API */,
 				E23195F429068386008BF8CA /* Utils */,
-				E23195E0290680B6008BF8CA /* AppDelegate.swift */,
-				E23195E2290680B6008BF8CA /* SceneDelegate.swift */,
-				E23195E4290680B6008BF8CA /* ViewController.swift */,
-				E23195E6290680B6008BF8CA /* Main.storyboard */,
 				E23195E9290680B7008BF8CA /* Assets.xcassets */,
-				E23195EB290680B7008BF8CA /* LaunchScreen.storyboard */,
 				E23195EE290680B7008BF8CA /* Info.plist */,
 			);
 			path = InstagramFirebaseWork;
@@ -88,6 +86,7 @@
 		E23195F429068386008BF8CA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E2BC577D290A782500849714 /* Extensions */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -122,6 +121,7 @@
 		E23195F8290683A2008BF8CA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E2BC5779290A77A600849714 /* FeedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -131,6 +131,33 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E2BC577D290A782500849714 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E2BC577E290A784300849714 /* UIViewController+Ext.swift */,
+				E2BC5780290A785000849714 /* UIButton+Ext.swift */,
+				E2BC5782290A785900849714 /* UIView+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E2BC5784290A799F00849714 /* AppResources */ = {
+			isa = PBXGroup;
+			children = (
+				E2BC5785290A79C700849714 /* Delegates */,
+			);
+			path = AppResources;
+			sourceTree = "<group>";
+		};
+		E2BC5785290A79C700849714 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				E23195E0290680B6008BF8CA /* AppDelegate.swift */,
+				E23195E2290680B6008BF8CA /* SceneDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,9 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E23195ED290680B7008BF8CA /* LaunchScreen.storyboard in Resources */,
 				E23195EA290680B7008BF8CA /* Assets.xcassets in Resources */,
-				E23195E8290680B6008BF8CA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,37 +230,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				E23195FF29068DBF008BF8CA /* SearchVC.swift in Sources */,
-				E23195E5290680B6008BF8CA /* ViewController.swift in Sources */,
+				E2BC577A290A77A600849714 /* FeedCell.swift in Sources */,
+				E2BC577F290A784300849714 /* UIViewController+Ext.swift in Sources */,
 				E23195E1290680B6008BF8CA /* AppDelegate.swift in Sources */,
 				E231960529068DED008BF8CA /* ProfileVC.swift in Sources */,
 				E231960329068DE1008BF8CA /* NotificationsVC.swift in Sources */,
 				E231960129068DD2008BF8CA /* ImageSelectorVC.swift in Sources */,
 				E23195FD29068DB4008BF8CA /* FeedVC.swift in Sources */,
+				E2BC5783290A785900849714 /* UIView+Ext.swift in Sources */,
 				E23195FB29068488008BF8CA /* IFTabBarController.swift in Sources */,
 				E23195E3290680B6008BF8CA /* SceneDelegate.swift in Sources */,
+				E2BC5781290A785000849714 /* UIButton+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		E23195E6290680B6008BF8CA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E23195E7290680B6008BF8CA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E23195EB290680B7008BF8CA /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E23195EC290680B7008BF8CA /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E23195EF290680B7008BF8CA /* Debug */ = {
@@ -364,9 +373,8 @@
 				INFOPLIST_FILE = InstagramFirebaseWork/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -393,9 +401,8 @@
 				INFOPLIST_FILE = InstagramFirebaseWork/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
