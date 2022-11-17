@@ -13,7 +13,6 @@ class FeedVC: UICollectionViewController {
     
     
     //MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -22,7 +21,6 @@ class FeedVC: UICollectionViewController {
     
     
     //MARK: - Helpers
-    
     func configureUI(){
         collectionView.backgroundColor = .white
     }
@@ -36,7 +34,6 @@ class FeedVC: UICollectionViewController {
 
 
 //MARK: - UICollectionViewDataSource
-
 extension FeedVC {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -52,7 +49,6 @@ extension FeedVC {
 
 
 //MARK: - UICollectionViewFlowLayout
-
 extension FeedVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         

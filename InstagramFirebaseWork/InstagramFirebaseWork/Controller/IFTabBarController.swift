@@ -11,8 +11,6 @@ class IFTabBarController: UITabBarController {
     
     
     //MARK: - Lifecycle
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.backgroundColor = #colorLiteral(red: 0.8650696874, green: 0.8748025298, blue: 0.874617517, alpha: 1)
@@ -22,9 +20,7 @@ class IFTabBarController: UITabBarController {
     
     
     //MARK: - Helpers
-    
     func configureVCs(){
-        
         let layout             = UICollectionViewFlowLayout()
         
         let feedVC             = configureNavigationController(rootVC: FeedVC(collectionViewLayout: layout), unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"))
