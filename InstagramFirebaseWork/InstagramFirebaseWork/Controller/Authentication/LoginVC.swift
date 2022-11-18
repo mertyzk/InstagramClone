@@ -17,31 +17,12 @@ class LoginVC: UIViewController {
     }()
     
     private lazy var emailTextField: UITextField = {
-        let textfield                   = UITextField()
-        textfield.setHeight(50)
-        textfield.borderStyle           = .none
-        textfield.textColor             = .white
-        textfield.keyboardAppearance    = .dark
+        let textfield                   = CustomTextField(placeHolder: "E-mail address", isSecureTextEntry: false)
         textfield.keyboardType          = .emailAddress
-        textfield.backgroundColor       = UIColor(white: 1, alpha: 0.1)
-        textfield.layer.cornerRadius    = 5
-        textfield.attributedPlaceholder = NSAttributedString(string: "E-mail address", attributes: [.foregroundColor: UIColor(white: 1, alpha: 0.7)])
         return textfield
     }()
     
-    private lazy var passwordTextField: UITextField = {
-        let textfield                   = UITextField()
-        textfield.setHeight(50)
-        textfield.borderStyle           = .none
-        textfield.textColor             = .white
-        textfield.keyboardAppearance    = .dark
-        textfield.keyboardType          = .emailAddress
-        textfield.backgroundColor       = UIColor(white: 1, alpha: 0.1)
-        textfield.isSecureTextEntry     = true
-        textfield.layer.cornerRadius    = 5
-        textfield.attributedPlaceholder = NSAttributedString(string: "Enter password", attributes: [.foregroundColor: UIColor(white: 1, alpha: 0.7)])
-        return textfield
-    }()
+    private lazy var passwordTextField = CustomTextField(placeHolder: "Enter password", isSecureTextEntry: true)
     
     private lazy var loginButton: UIButton = {
         let button                       = UIButton(type: .system)
@@ -49,7 +30,7 @@ class LoginVC: UIViewController {
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor          = .systemPurple
-        button.layer.cornerRadius       = 5
+        button.layer.cornerRadius       = 15
         button.titleLabel?.font         = UIFont.boldSystemFont(ofSize: 20)
         return button
     }()
@@ -63,23 +44,16 @@ class LoginVC: UIViewController {
     
     private lazy var dontHaveAnAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        let atts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(white: 1, alpha: 0.8), .font: UIFont.systemFont(ofSize: 16)]
-        let attTitle = NSMutableAttributedString(string: "Don't have an account? ", attributes: atts)
-        let boldAtts : [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(white: 1, alpha: 0.9), .font: UIFont.boldSystemFont(ofSize: 16)]
-        attTitle.append(NSAttributedString(string: "Sign Up", attributes: boldAtts))
-        button.setAttributedTitle(attTitle, for: .normal)
+        button.attributedTitle(firstPart: "Don't have an account? ", secondPart: "Sign Up")
         return button
     }()
     
     private lazy var forgotPasswordButton: UIButton = {
         let button = UIButton(type: .system)
-        let atts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(white: 1, alpha: 0.8), .font: UIFont.systemFont(ofSize: 16)]
-        let attTitle = NSMutableAttributedString(string: "Forgot your password? ", attributes: atts)
-        let boldAtts : [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(white: 1, alpha: 0.9), .font: UIFont.boldSystemFont(ofSize: 16)]
-        attTitle.append(NSAttributedString(string: "Get Help", attributes: boldAtts))
-        button.setAttributedTitle(attTitle, for: .normal)
+        button.attributedTitle(firstPart: "Forgot your password? ", secondPart: "Get Help")
         return button
     }()
+    
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -87,13 +61,12 @@ class LoginVC: UIViewController {
         configureUI()
     }
     
+    
     //MARK: - Helpers
     func configureUI() {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.barStyle = .black
-        
         setGradient()
-        
         view.addSubviewsExt(instaLogoImage, loginStackView, dontHaveAnAccountButton, forgotPasswordButton)
         instaLogoImage.centerX(inView: view)
         instaLogoImage.setDimensions(height: 80, width: 180)
@@ -105,10 +78,11 @@ class LoginVC: UIViewController {
         forgotPasswordButton.centerX(inView: view)
     }
     
+    
     func setGradient(){
         let gradient                                = CAGradientLayer()
         gradient.colors                             = [UIColor.systemPurple.cgColor, UIColor.systemBlue.cgColor]
-        gradient.locations                          = [0, 1]
+        gradient.locations                          = [0,1]
         view.layer.addSublayer(gradient)
         gradient.frame                              = view.frame
     }
