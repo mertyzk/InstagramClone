@@ -14,7 +14,7 @@ extension UIView {
         for view in views { addSubview(view)}
     }
     
-    
+    //MARK: - This function for layout
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 left: NSLayoutXAxisAnchor? = nil,
                 bottom: NSLayoutYAxisAnchor? = nil,

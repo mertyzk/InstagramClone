@@ -8,8 +8,12 @@
 import UIKit
 
 class LoginVC: UIViewController {
-
-    //MARK: - Properties
+    
+    //MARK: - Variables
+    private var viewModel = LoginViewModel()
+    
+    
+    //MARK: - UI Elements
     private lazy var instaLogoImage: UIImageView = {
         let logoImage                   = UIImageView(image: #imageLiteral(resourceName: "Instagram_logo_white"))
         logoImage.contentMode           = .scaleAspectFill
@@ -17,21 +21,22 @@ class LoginVC: UIViewController {
     }()
     
     private lazy var emailTextField: UITextField = {
-        let textfield                   = CustomTextField(placeHolder: "E-mail address", isSecureTextEntry: false)
+        let textfield                   = CustomTextField(placeHolder: LoginRegisterStrings.emailAdress, isSecureTextEntry: false)
         textfield.keyboardType          = .emailAddress
         return textfield
     }()
     
-    private lazy var passwordTextField = CustomTextField(placeHolder: "Enter password", isSecureTextEntry: true)
+    private lazy var passwordTextField = CustomTextField(placeHolder: LoginRegisterStrings.enterPassword, isSecureTextEntry: true)
     
     private lazy var loginButton: UIButton = {
         let button                       = UIButton(type: .system)
         button.setHeight(50)
-        button.setTitle("Login", for: .normal)
+        button.setTitle(LoginRegisterStrings.login, for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor          = .systemPurple
+        button.backgroundColor          = #colorLiteral(red: 0.3591802418, green: 0.3747666478, blue: 0.5265965462, alpha: 1)
         button.layer.cornerRadius       = 15
         button.titleLabel?.font         = UIFont.boldSystemFont(ofSize: 20)
+        button.isEnabled                = false
         return button
     }()
     
@@ -44,13 +49,14 @@ class LoginVC: UIViewController {
     
     private lazy var dontHaveAnAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        button.attributedTitle(firstPart: "Don't have an account? ", secondPart: "Sign Up")
+        button.attributedTitle(firstPart: LoginRegisterStrings.dontHaveAccount, secondPart: LoginRegisterStrings.signUp)
+        button.addTarget(self, action: #selector(signUpClicked), for: .touchUpInside)
         return button
     }()
     
     private lazy var forgotPasswordButton: UIButton = {
         let button = UIButton(type: .system)
-        button.attributedTitle(firstPart: "Forgot your password? ", secondPart: "Get Help")
+        button.attributedTitle(firstPart: LoginRegisterStrings.forgotPassword, secondPart: LoginRegisterStrings.getHelp)
         return button
     }()
     
@@ -59,10 +65,16 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        setNotificationObservers()
     }
     
     
     //MARK: - Helpers
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    
     func configureUI() {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.barStyle = .black
@@ -79,12 +91,37 @@ class LoginVC: UIViewController {
     }
     
     
-    func setGradient(){
-        let gradient                                = CAGradientLayer()
-        gradient.colors                             = [UIColor.systemPurple.cgColor, UIColor.systemBlue.cgColor]
-        gradient.locations                          = [0,1]
-        view.layer.addSublayer(gradient)
-        gradient.frame                              = view.frame
+    func setNotificationObservers() {
+        emailTextField.addTarget(self, action: #selector(textHasChanged), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textHasChanged), for: .editingChanged)
     }
+    
+    
+    //MARK: - @objc Action Helpers
+    @objc func signUpClicked() {
+        let registerVC = RegisterVC()
+        navigationController?.pushViewController(registerVC, animated: true)
+    }
+    
+    
+    @objc func textHasChanged(sender: UITextField) {
+        switch sender {
+        case emailTextField:
+            viewModel.email = sender.text
+        case passwordTextField:
+            viewModel.password = sender.text
+        default:
+            break
+        }
+        updateForm()
+    }
+}
 
+
+//MARK: - Extension FormViewModel
+extension LoginVC: FormViewModel {
+    func updateForm() {
+        loginButton.backgroundColor = viewModel.buttonBGColor
+        loginButton.isEnabled       = viewModel.formIsValid
+    }
 }

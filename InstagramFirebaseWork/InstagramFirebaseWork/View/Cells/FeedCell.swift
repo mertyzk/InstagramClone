@@ -32,7 +32,7 @@ class FeedCell: UICollectionViewCell {
     
     private lazy var postImageArea: UIImageView = {
         let imageArea                       = UIImageView()
-        imageArea.image                     = UIImage(named: "defaultimage")
+        imageArea.image                     = FeedImages.defaultImage
         imageArea.clipsToBounds             = true
         imageArea.isUserInteractionEnabled  = true
         imageArea.contentMode               = .scaleAspectFill
@@ -41,21 +41,21 @@ class FeedCell: UICollectionViewCell {
     
     private lazy var postLikeButton: UIButton = {
         let button                          = UIButton(type: .system)
-        button.setImage(UIImage(named: "like_unselected")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(FeedImages.likeUnselected, for: .normal)
         button.isUserInteractionEnabled     = true
         return button
     }()
     
     private lazy var postCommentButton: UIButton = {
         let button                          = UIButton(type: .system)
-        button.setImage(UIImage(named: "comment")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(FeedImages.comment, for: .normal)
         button.isUserInteractionEnabled     = true
         return button
     }()
     
     private lazy var postDMButton: UIButton = {
         let button                          = UIButton(type: .system)
-        button.setImage(UIImage(named: "send2")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(FeedImages.send2, for: .normal)
         button.isUserInteractionEnabled     = true
         return button
     }()
