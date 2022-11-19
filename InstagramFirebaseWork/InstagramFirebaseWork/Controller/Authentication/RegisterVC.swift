@@ -37,9 +37,10 @@ class RegisterVC: UIViewController {
         button.setHeight(50)
         button.setTitle(LoginRegisterStrings.signUp, for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor                = .systemPurple
+        button.backgroundColor                = #colorLiteral(red: 0.3591802418, green: 0.3747666478, blue: 0.5265965462, alpha: 1)
         button.layer.cornerRadius             = 15
         button.titleLabel?.font               = UIFont.boldSystemFont(ofSize: 20)
+        button.isEnabled                      = false
         return button
     }()
     
