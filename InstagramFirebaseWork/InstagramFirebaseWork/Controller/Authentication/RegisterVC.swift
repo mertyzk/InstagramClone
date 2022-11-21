@@ -11,7 +11,7 @@ class RegisterVC: UIViewController {
     
     //MARK: - Variables
     private var viewModel                     = RegisterViewModel()
-    
+    private var profileImage: UIImage?
     
     //MARK: - UI Elements
     private lazy var selectPhotoButton: UIButton = {
@@ -41,6 +41,7 @@ class RegisterVC: UIViewController {
         button.layer.cornerRadius             = 15
         button.titleLabel?.font               = UIFont.boldSystemFont(ofSize: 20)
         button.isEnabled                      = false
+        button.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)
         return button
     }()
     
@@ -68,7 +69,7 @@ class RegisterVC: UIViewController {
     
     
     //MARK: - Helpers
-    func configureUI() {
+    private func configureUI() {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.barStyle = .black
         setGradient()
@@ -82,7 +83,7 @@ class RegisterVC: UIViewController {
     }
     
     
-    func setNotificationObservers() {
+    private func setNotificationObservers() {
         emailTextField.addTarget(self, action: #selector(textHasChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textHasChanged), for: .editingChanged)
         fullNameTextField.addTarget(self, action: #selector(textHasChanged), for: .editingChanged)
@@ -91,12 +92,12 @@ class RegisterVC: UIViewController {
     }
     
     //MARK: - @objc Action Helpers
-    @objc func loginClicked() {
+    @objc private func loginClicked() {
         navigationController?.popViewController(animated: true)
     }
     
     
-    @objc func selectProfilePhoto() {
+    @objc private func selectProfilePhoto() {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
@@ -104,7 +105,7 @@ class RegisterVC: UIViewController {
     }
     
     
-    @objc func textHasChanged(sender: UITextField) {
+    @objc private func textHasChanged(sender: UITextField) {
         switch sender {
         case emailTextField:
             viewModel.email                   = sender.text
@@ -118,6 +119,19 @@ class RegisterVC: UIViewController {
             break
         }
         updateForm()
+    }
+    
+    
+    @objc private func signUpButtonClicked() {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let fullname = fullNameTextField.text else { return }
+        guard let username = usernameTextField.text else { return }
+        guard let profileImage = self.profileImage else { return }
+        
+        let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
+        
+        AuthService.registerUser(withCredential: credentials)
     }
 }
 
@@ -134,7 +148,8 @@ extension RegisterVC: FormViewModel {
 //MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate
 extension RegisterVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let selectedImage = info[.editedImage] as? UIImage else { return }
+        guard let selectedImage               = info[.editedImage] as? UIImage else { return }
+        profileImage                          = selectedImage
         selectPhotoButton.layer.cornerRadius  = selectPhotoButton.frame.width / 2
         selectPhotoButton.layer.masksToBounds = true
         selectPhotoButton.layer.borderColor   = UIColor.white.cgColor

@@ -18,6 +18,8 @@
 		E231960129068DD2008BF8CA /* ImageSelectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231960029068DD2008BF8CA /* ImageSelectorVC.swift */; };
 		E231960329068DE1008BF8CA /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231960229068DE1008BF8CA /* NotificationsVC.swift */; };
 		E231960529068DED008BF8CA /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231960429068DED008BF8CA /* ProfileVC.swift */; };
+		E2489388292BF56B002F31F2 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2489387292BF56B002F31F2 /* ImageUploader.swift */; };
+		E248938A292BF572002F31F2 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2489389292BF572002F31F2 /* AuthService.swift */; };
 		E25217E32928168200566974 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25217E22928168200566974 /* CustomTextField.swift */; };
 		E29B12212926909700989E45 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29B12202926909700989E45 /* RegisterVC.swift */; };
 		E29B12232926909F00989E45 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29B12222926909F00989E45 /* LoginVC.swift */; };
@@ -48,6 +50,8 @@
 		E231960029068DD2008BF8CA /* ImageSelectorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectorVC.swift; sourceTree = "<group>"; };
 		E231960229068DE1008BF8CA /* NotificationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsVC.swift; sourceTree = "<group>"; };
 		E231960429068DED008BF8CA /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		E2489387292BF56B002F31F2 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
+		E2489389292BF572002F31F2 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E25217E22928168200566974 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		E29B12202926909700989E45 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		E29B12222926909F00989E45 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -80,7 +84,6 @@
 				D35B91770D00AEC76AFE5892 /* Pods-InstagramFirebaseWork.debug.xcconfig */,
 				3B03482C83A839C0CE15FD8D /* Pods-InstagramFirebaseWork.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -139,6 +142,8 @@
 		E23195F529068392008BF8CA /* API */ = {
 			isa = PBXGroup;
 			children = (
+				E2489387292BF56B002F31F2 /* ImageUploader.swift */,
+				E2489389292BF572002F31F2 /* AuthService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 				E2BC577A290A77A600849714 /* FeedCell.swift in Sources */,
 				E29B12232926909F00989E45 /* LoginVC.swift in Sources */,
 				E2BC577F290A784300849714 /* UIViewController+Ext.swift in Sources */,
+				E248938A292BF572002F31F2 /* AuthService.swift in Sources */,
 				E23195E1290680B6008BF8CA /* AppDelegate.swift in Sources */,
 				E231960529068DED008BF8CA /* ProfileVC.swift in Sources */,
 				E231960329068DE1008BF8CA /* NotificationsVC.swift in Sources */,
@@ -420,6 +426,7 @@
 				E2BE5D322928D78A00F7D7FC /* Constants.swift in Sources */,
 				E231960129068DD2008BF8CA /* ImageSelectorVC.swift in Sources */,
 				E23195FD29068DB4008BF8CA /* FeedVC.swift in Sources */,
+				E2489388292BF56B002F31F2 /* ImageUploader.swift in Sources */,
 				E2BC5783290A785900849714 /* UIView+Ext.swift in Sources */,
 				E23195FB29068488008BF8CA /* IFTabBarController.swift in Sources */,
 				E23195E3290680B6008BF8CA /* SceneDelegate.swift in Sources */,
