@@ -37,6 +37,7 @@ class LoginVC: UIViewController {
         button.layer.cornerRadius       = 15
         button.titleLabel?.font         = UIFont.boldSystemFont(ofSize: 20)
         button.isEnabled                = false
+        button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -75,7 +76,7 @@ class LoginVC: UIViewController {
     }
     
     
-    func configureUI() {
+    private func configureUI() {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.barStyle = .black
         setGradient()
@@ -91,20 +92,20 @@ class LoginVC: UIViewController {
     }
     
     
-    func setNotificationObservers() {
+    private func setNotificationObservers() {
         emailTextField.addTarget(self, action: #selector(textHasChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textHasChanged), for: .editingChanged)
     }
     
     
     //MARK: - @objc Action Helpers
-    @objc func signUpClicked() {
+    @objc private func signUpClicked() {
         let registerVC = RegisterVC()
         navigationController?.pushViewController(registerVC, animated: true)
     }
     
     
-    @objc func textHasChanged(sender: UITextField) {
+    @objc private func textHasChanged(sender: UITextField) {
         switch sender {
         case emailTextField:
             viewModel.email = sender.text
@@ -114,6 +115,19 @@ class LoginVC: UIViewController {
             break
         }
         updateForm()
+    }
+    
+    
+    @objc private func loginButtonPressed() {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        AuthService.login(withEmail: email, password: password) { result, error in
+            if error != nil {
+                print("Login error: \(error?.localizedDescription)")
+                return
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
 

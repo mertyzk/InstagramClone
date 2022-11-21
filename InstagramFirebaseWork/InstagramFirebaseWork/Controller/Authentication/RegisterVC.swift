@@ -114,7 +114,7 @@ class RegisterVC: UIViewController {
         case fullNameTextField:
             viewModel.fullname                = sender.text
         case usernameTextField:
-            viewModel.username                = sender.text
+            viewModel.username                = sender.text?.lowercased()
         default:
             break
         }
@@ -123,15 +123,22 @@ class RegisterVC: UIViewController {
     
     
     @objc private func signUpButtonClicked() {
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-        guard let fullname = fullNameTextField.text else { return }
-        guard let username = usernameTextField.text else { return }
+        guard let email                       = emailTextField.text else { return }
+        guard let password                    = passwordTextField.text else { return }
+        guard let fullname                    = fullNameTextField.text else { return }
+        guard let username                    = usernameTextField.text?.lowercased() else { return }
         guard let profileImage = self.profileImage else { return }
         
         let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
         
-        AuthService.registerUser(withCredential: credentials)
+        AuthService.registerUser(withCredential: credentials) { error in
+            if error != nil {
+                print("Register error: \(error?.localizedDescription)")
+                return
+            }
+            
+            self.dismiss(animated: true)
+        }
     }
 }
 

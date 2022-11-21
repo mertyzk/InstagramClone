@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class IFTabBarController: UITabBarController {
     
@@ -16,6 +17,20 @@ class IFTabBarController: UITabBarController {
         tabBar.backgroundColor = #colorLiteral(red: 0.8650696874, green: 0.8748025298, blue: 0.874617517, alpha: 1)
         tabBar.tintColor       = .black
         configureVCs()
+        checkCurrentUser()
+    }
+    
+    
+    // MARK: - API
+    func checkCurrentUser() {
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
+                let loginVC = LoginVC()
+                let navigate = UINavigationController(rootViewController: loginVC)
+                navigate.modalPresentationStyle = .fullScreen
+                self.present(navigate, animated: true, completion: nil)
+            }
+        }
     }
     
     
