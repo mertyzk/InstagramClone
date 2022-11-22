@@ -13,13 +13,11 @@ struct ImageUploader {
         guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
         let fileName        = NSUUID().uuidString
         let ref             = Storage.storage().reference(withPath: "/profile_images/\(fileName)")
-        
         ref.putData(imageData, metadata: nil) { metada, error in
             if error != nil {
                 print("Failed to upload image \(error?.localizedDescription)")
                 return
             }
-            
             ref.downloadURL { url, error in
                 guard let imageURL = url?.absoluteString else { return }
                 completed(imageURL)
