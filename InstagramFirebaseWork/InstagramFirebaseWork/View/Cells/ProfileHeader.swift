@@ -9,8 +9,9 @@ import Foundation
 import UIKit
 
 class ProfileHeader: UICollectionReusableView {
-    //MARK: - Properties
     
+    //MARK: - Properties
+    static let reuseID = "profileHeader"
     
     //MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -21,6 +22,4 @@ class ProfileHeader: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }

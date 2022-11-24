@@ -10,6 +10,8 @@ import UIKit
 class ProfileCell: UICollectionViewCell {
     
     //MARK: - Properties
+    static let reuseID = "profileCell"
+    
     
     private lazy var profileImageView: UIImageView = {
         let imageArea                       = UIImageView()
@@ -26,7 +28,6 @@ class ProfileCell: UICollectionViewCell {
         button.titleLabel?.font             = UIFont.boldSystemFont(ofSize: 13)
         button.setTitle("Hello", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(userNameButtonClicked), for: .touchUpInside)
         return button
     }()
     
@@ -106,30 +107,12 @@ class ProfileCell: UICollectionViewCell {
     private func configure(){
         backgroundColor = .lightGray
         
-        addSubviewsExt(profileImageView, userNameButton, postImageArea, actionStackView, likesLabel, captionLabel, postTimeLabel)
-        
-        profileImageView.anchor(top: topAnchor, left: leftAnchor, paddingTop: 12, paddingLeft: 12)
-        profileImageView.setDimensions(height: 40, width: 40)
-        
-        userNameButton.centerY(inView: profileImageView, leftAnchor: profileImageView.rightAnchor, paddingLeft: 8)
-        
-        postImageArea.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 8)
-        postImageArea.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
-        
-        actionStackView.anchor(top: postImageArea.bottomAnchor, width: 120, height: 50)
-        
-        likesLabel.anchor(top: postLikeButton.bottomAnchor, left: leftAnchor, paddingTop: -4, paddingLeft: 8)
-        
-        captionLabel.anchor(top: likesLabel.bottomAnchor, left: leftAnchor, paddingTop: 8, paddingLeft: 8)
-        
-        postTimeLabel.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, paddingTop: 8, paddingLeft: 8)
+
     }
     
     
     //MARK: - addTarget @objc Functions
     
-    @objc func userNameButtonClicked(){
-        print("Clicked at username button")
-    }
+
     
 }

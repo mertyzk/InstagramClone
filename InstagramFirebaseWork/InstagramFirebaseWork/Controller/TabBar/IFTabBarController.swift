@@ -37,12 +37,12 @@ class IFTabBarController: UITabBarController {
     //MARK: - Helpers
     func configureVCs(){
         let layout             = UICollectionViewFlowLayout()
-        
+        let profileLayout      = UICollectionViewFlowLayout()
         let feedVC             = configureNavigationController(rootVC: FeedVC(collectionViewLayout: layout), unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"))
         let searchVC           = configureNavigationController(rootVC: SearchVC(), unselectedImage: #imageLiteral(resourceName: "search_unselected"), selectedImage: #imageLiteral(resourceName: "search_selected"))
         let imageSelectorVC    = configureNavigationController(rootVC: ImageSelectorVC(), unselectedImage: #imageLiteral(resourceName: "plus_unselected"), selectedImage: #imageLiteral(resourceName: "plus_unselected"))
         let notificationsVC    = configureNavigationController(rootVC: NotificationsVC(), unselectedImage: #imageLiteral(resourceName: "like_unselected"), selectedImage: #imageLiteral(resourceName: "like_selected"))
-        let profileVC          = configureNavigationController(rootVC: ProfileVC(), unselectedImage: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected"))
+        let profileVC          = configureNavigationController(rootVC: ProfileVC(collectionViewLayout: profileLayout), unselectedImage: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected"))
         
         viewControllers        = [feedVC, searchVC, imageSelectorVC, notificationsVC, profileVC]
     }
