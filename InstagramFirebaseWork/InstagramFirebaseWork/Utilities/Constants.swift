@@ -30,3 +30,9 @@ enum FeedImages {
 enum RegisterImages {
     static let selectPhoto        = UIImage(named: "plus_photo")
 }
+
+enum ProfileHeaderImages {
+    static let gridImage          = UIImage(named: "grid")
+    static let listImage          = UIImage(named: "list")
+    static let bookmarkImage      = UIImage(named: "ribbon")
+}

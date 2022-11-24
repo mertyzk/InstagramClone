@@ -201,9 +201,8 @@
 		E25217E529281D6800566974 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				E2BC5779290A77A600849714 /* FeedCell.swift */,
-				E270EDEA292D28DD00B1C473 /* ProfileCell.swift */,
-				E270EDEC292D293000B1C473 /* ProfileHeader.swift */,
+				E2C54C43292FFBD80029E18F /* Feed */,
+				E2C54C42292FFBD00029E18F /* Profile */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -301,6 +300,23 @@
 				E231960229068DE1008BF8CA /* NotificationsVC.swift */,
 			);
 			path = Notifications;
+			sourceTree = "<group>";
+		};
+		E2C54C42292FFBD00029E18F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E270EDEA292D28DD00B1C473 /* ProfileCell.swift */,
+				E270EDEC292D293000B1C473 /* ProfileHeader.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E2C54C43292FFBD80029E18F /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				E2BC5779290A77A600849714 /* FeedCell.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

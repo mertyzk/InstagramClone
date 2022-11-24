@@ -128,11 +128,9 @@ class FeedCell: UICollectionViewCell {
     
     
     //MARK: - addTarget @objc Functions
-    
     @objc func userNameButtonClicked(){
         print("Clicked at username button")
     }
-    
 }
 
 
