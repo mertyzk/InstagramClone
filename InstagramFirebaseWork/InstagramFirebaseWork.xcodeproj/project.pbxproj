@@ -34,6 +34,9 @@
 		E2BE5D392928ED3B00F7D7FC /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE5D382928ED3B00F7D7FC /* RegisterViewModel.swift */; };
 		E2BE5D442928FBEB00F7D7FC /* AuthenticationViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE5D432928FBEB00F7D7FC /* AuthenticationViewModelProtocol.swift */; };
 		E2BE5D462928FDED00F7D7FC /* FormViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE5D452928FDED00F7D7FC /* FormViewModelProtocol.swift */; };
+		E2FB54572930F5610043B580 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB54562930F5610043B580 /* UserService.swift */; };
+		E2FB54592930F88D0043B580 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB54582930F88D0043B580 /* User.swift */; };
+		E2FB545C293101630043B580 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB545B293101630043B580 /* ProfileHeaderViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +71,9 @@
 		E2BE5D382928ED3B00F7D7FC /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		E2BE5D432928FBEB00F7D7FC /* AuthenticationViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModelProtocol.swift; sourceTree = "<group>"; };
 		E2BE5D452928FDED00F7D7FC /* FormViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModelProtocol.swift; sourceTree = "<group>"; };
+		E2FB54562930F5610043B580 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		E2FB54582930F88D0043B580 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E2FB545B293101630043B580 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,7 @@
 			children = (
 				E2489387292BF56B002F31F2 /* ImageUploader.swift */,
 				E2489389292BF572002F31F2 /* AuthService.swift */,
+				E2FB54562930F5610043B580 /* UserService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -169,6 +176,7 @@
 		E23195F729068398008BF8CA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E2FB545A293101500043B580 /* ProfileHeader */,
 				E2BE5D352928ED1B00F7D7FC /* AuthenticationViewModel */,
 			);
 			path = ViewModel;
@@ -186,6 +194,7 @@
 		E23195F9290683A4008BF8CA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E2FB54582930F88D0043B580 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -319,6 +328,14 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		E2FB545A293101500043B580 /* ProfileHeader */ = {
+			isa = PBXGroup;
+			children = (
+				E2FB545B293101630043B580 /* ProfileHeaderViewModel.swift */,
+			);
+			path = ProfileHeader;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -433,7 +450,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2FB54592930F88D0043B580 /* User.swift in Sources */,
 				E23195FF29068DBF008BF8CA /* SearchVC.swift in Sources */,
+				E2FB54572930F5610043B580 /* UserService.swift in Sources */,
 				E2BE5D442928FBEB00F7D7FC /* AuthenticationViewModelProtocol.swift in Sources */,
 				E2BC577A290A77A600849714 /* FeedCell.swift in Sources */,
 				E270EDEB292D28DD00B1C473 /* ProfileCell.swift in Sources */,
@@ -442,6 +461,7 @@
 				E248938A292BF572002F31F2 /* AuthService.swift in Sources */,
 				E23195E1290680B6008BF8CA /* AppDelegate.swift in Sources */,
 				E270EDED292D293000B1C473 /* ProfileHeader.swift in Sources */,
+				E2FB545C293101630043B580 /* ProfileHeaderViewModel.swift in Sources */,
 				E231960529068DED008BF8CA /* ProfileVC.swift in Sources */,
 				E231960329068DE1008BF8CA /* NotificationsVC.swift in Sources */,
 				E2BE5D462928FDED00F7D7FC /* FormViewModelProtocol.swift in Sources */,

@@ -10,8 +10,9 @@ import UIKit
 class ProfileVC: UICollectionViewController {
     
     //MARK: - Variables
-    
-    //MARK: - UI Elements
+    var user: User? {
+        didSet { navigationItem.title = user?.username }
+    }
     
     
     //MARK: - Lifecycle
@@ -19,6 +20,14 @@ class ProfileVC: UICollectionViewController {
         super.viewDidLoad()
         configureUI()
         configureCollectionView()
+        fetchUser()
+    }
+    
+    //MARK: - API
+    private func fetchUser() {
+        UserService.fetchUser { user in
+            self.user = user
+        }
     }
     
     

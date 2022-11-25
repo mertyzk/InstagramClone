@@ -6,7 +6,9 @@
 //
 
 import UIKit
+import Firebase
 
+//MARK: - String Constants
 enum LoginRegisterStrings {
     static let emailAdress        = "E-mail address"
     static let enterPassword      = "Enter password"
@@ -20,6 +22,8 @@ enum LoginRegisterStrings {
     static let userName           = "User Name"
 }
 
+
+//MARK: - Feed Images Constants
 enum FeedImages {
     static let defaultImage       = UIImage(named: "defaultimage")
     static let likeUnselected     = UIImage(named: "like_unselected")?.withRenderingMode(.alwaysOriginal)
@@ -27,12 +31,21 @@ enum FeedImages {
     static let send2              = UIImage(named: "send2")?.withRenderingMode(.alwaysOriginal)
 }
 
+
+//MARK: - RegisterImages Constants
 enum RegisterImages {
     static let selectPhoto        = UIImage(named: "plus_photo")
 }
 
+
+//MARK: - ProfileHeaderImages Constants
 enum ProfileHeaderImages {
     static let gridImage          = UIImage(named: "grid")
     static let listImage          = UIImage(named: "list")
     static let bookmarkImage      = UIImage(named: "ribbon")
 }
+
+
+//MARK: - Firebase Constants
+let COLLECTION_USERS = Firestore.firestore().collection("users")
+
