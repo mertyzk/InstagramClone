@@ -7,25 +7,29 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 class ProfileHeader: UICollectionReusableView {
     
     //MARK: - Properties
     static let reuseID = "profileHeader"
     
+    var viewModel: ProfileHeaderViewModel? {
+        didSet { setData() }
+    }
+    
     
     //MARK: - UIElements
     private lazy var profileImageView: UIImageView = {
         let imageArea                       = UIImageView()
-        imageArea.image                     = #imageLiteral(resourceName: "venom-7")
         imageArea.clipsToBounds             = true
         imageArea.contentMode               = .scaleAspectFill
+        imageArea.backgroundColor           = .lightGray
         return imageArea
     }()
     
     private lazy var nameLabel: UILabel     = {
         let label                           = UILabel()
-        label.text                          = "Name Surname"
         label.font                          = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
@@ -146,6 +150,13 @@ class ProfileHeader: UICollectionReusableView {
         let attributedText = NSMutableAttributedString(string: "\(value)\n", attributes: [.font : UIFont.boldSystemFont(ofSize: 14)])
         attributedText.append(NSAttributedString(string: label, attributes: [.font : UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray]))
         return attributedText
+    }
+    
+    
+    private func setData() {
+        guard let viewModel                 = viewModel else { return }
+        nameLabel.text                      = viewModel.fullname
+        profileImageView.sd_setImage(with: viewModel.profileImageURL)
     }
     
     

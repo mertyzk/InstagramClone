@@ -106,7 +106,6 @@ class FeedCell: UICollectionViewCell {
     
     private func configure(){
         backgroundColor = .white
-        
         addSubviewsExt(profileImageView, userNameButton, postImageArea, actionStackView, likesLabel, captionLabel, postTimeLabel)
         
         profileImageView.anchor(top: topAnchor, left: leftAnchor, paddingTop: 12, paddingLeft: 12)

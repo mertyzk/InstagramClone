@@ -11,7 +11,7 @@ class ProfileVC: UICollectionViewController {
     
     //MARK: - Variables
     var user: User? {
-        didSet { navigationItem.title = user?.username }
+        didSet { collectionView.reloadData() }
     }
     
     
@@ -27,6 +27,7 @@ class ProfileVC: UICollectionViewController {
     private func fetchUser() {
         UserService.fetchUser { user in
             self.user = user
+            DispatchQueue.main.async { self.navigationItem.title = user.username }
         }
     }
     
@@ -54,7 +55,8 @@ extension ProfileVC {
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileHeader.reuseID, for: indexPath)
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileHeader.reuseID, for: indexPath) as! ProfileHeader
+        if let user = user { header.viewModel = ProfileHeaderViewModel(user: user) }
         return header
     }
 }
