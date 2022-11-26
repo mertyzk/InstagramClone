@@ -14,12 +14,14 @@ class ProfileVC: UICollectionViewController {
         didSet { collectionView.reloadData() }
     }
     
-    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         configureCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         fetchUser()
     }
     

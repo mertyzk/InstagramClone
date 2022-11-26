@@ -10,7 +10,6 @@ import UIKit
 class FeedCell: UICollectionViewCell {
     
     //MARK: - Properties
-    
     private lazy var profileImageView: UIImageView = {
         let imageArea                       = UIImageView()
         imageArea.image                     = #imageLiteral(resourceName: "venom-7")
