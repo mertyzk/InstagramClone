@@ -11,6 +11,9 @@ class SearchCell: UITableViewCell {
     
     //MARK: - Properties
     static let reuseID = "SearchCell"
+    var viewModel: UserCellViewModel? {
+        didSet { set() }
+    }
     
     
     //MARK: - UI Elements
@@ -19,7 +22,6 @@ class SearchCell: UITableViewCell {
         imageView.contentMode     = .scaleAspectFill
         imageView.clipsToBounds   = true
         imageView.backgroundColor = .lightGray
-        imageView.image = #imageLiteral(resourceName: "venom-7")
         return imageView
     }()
     
@@ -65,8 +67,22 @@ class SearchCell: UITableViewCell {
         profileImageView.layer.cornerRadius = 25
         profileImageView.centerY(inView: self, leftAnchor: leftAnchor, paddingLeft: 12)
         namesStackView.centerY(inView: profileImageView, leftAnchor: profileImageView.rightAnchor, paddingLeft: 8)
-        
-
     }
-
+    
+    
+    private func set() {
+        guard let viewModel = viewModel else { return }
+        userNameLabel.text = viewModel.username
+        fullNameLabel.text = viewModel.fullname
+        profileImageView.sd_setImage(with: viewModel.profileImageURL)
+    }
 }
+
+
+
+
+
+
+
+
+

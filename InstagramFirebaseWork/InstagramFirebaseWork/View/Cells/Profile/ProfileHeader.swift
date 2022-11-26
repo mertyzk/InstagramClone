@@ -38,7 +38,7 @@ class ProfileHeader: UICollectionReusableView {
         let label                           = UILabel()
         label.numberOfLines                 = 0
         label.textAlignment                 = .center
-        label.attributedText                = attributedTextForLabel(value: 9, label: "posts")
+        label.attributedText                = attributedTextForLabel(value: 0, label: "posts")
         return label
     }()
     
@@ -46,7 +46,7 @@ class ProfileHeader: UICollectionReusableView {
         let label                           = UILabel()
         label.numberOfLines                 = 0
         label.textAlignment                 = .center
-        label.attributedText                = attributedTextForLabel(value: 123, label: "followers")
+        label.attributedText                = attributedTextForLabel(value: 0, label: "followers")
         return label
     }()
     
@@ -54,7 +54,7 @@ class ProfileHeader: UICollectionReusableView {
         let label                           = UILabel()
         label.numberOfLines                 = 0
         label.textAlignment                 = .center
-        label.attributedText                = attributedTextForLabel(value: 256, label: "following")
+        label.attributedText                = attributedTextForLabel(value: 0, label: "following")
         return label
     }()
     
@@ -133,7 +133,7 @@ class ProfileHeader: UICollectionReusableView {
     private func configure(){
         backgroundColor = .white
         addSubviewsExt(profileImageView, nameLabel, editProfileButton, headerStackView, buttonStackView, topDivider, bottomDivider)
-        profileImageView.anchor(top: topAnchor, left: leftAnchor, paddingTop: 16, paddingLeft: 20)
+        profileImageView.anchor(top: topAnchor, left: leftAnchor, paddingTop: 10, paddingLeft: 20)
         profileImageView.setDimensions(height: 80, width: 80)
         profileImageView.layer.cornerRadius = 40
         nameLabel.anchor(top: profileImageView.bottomAnchor, left: profileImageView.leftAnchor, paddingTop: 10, paddingLeft: 0)

@@ -17,4 +17,21 @@ struct UserService {
             completion(user)
         }
     }
+    
+    
+    static func fetchUsers(completion: @escaping([User]) -> Void) {
+        //var users = [User]()
+        COLLECTION_USERS.getDocuments { snapshot, error in
+            guard let snapshot = snapshot else { return }
+            let users = snapshot.documents.map { User(dictionary: $0.data()) }
+            completion(users)
+            
+            // OR WE CAN USE BELOW CODE WITH users ARRAY AT 23. ROW
+            /*snapshot.documents.forEach { document in
+                let user = User(dictionary: document.data())
+                users.append(user)
+            }
+            completion(users)*/
+        }
+    }
 }

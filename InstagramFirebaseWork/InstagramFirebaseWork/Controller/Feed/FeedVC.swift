@@ -38,6 +38,7 @@ class FeedVC: UICollectionViewController {
         do {
             try Auth.auth().signOut()
             let loginVC = LoginVC()
+            loginVC.delegate = self.tabBarController as? IFTabBarController
             let navigate = UINavigationController(rootViewController: loginVC)
             navigate.modalPresentationStyle = .fullScreen
             self.present(navigate, animated: true, completion: nil)

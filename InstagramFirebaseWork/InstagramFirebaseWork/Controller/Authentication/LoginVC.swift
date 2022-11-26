@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol AuthenticationProtocol: AnyObject {
+    func authenticationComplete()
+}
+
 class LoginVC: UIViewController {
     
     //MARK: - Variables
     private var viewModel = LoginViewModel()
+    weak var delegate: AuthenticationProtocol?
     
     
     //MARK: - UI Elements
@@ -101,6 +106,7 @@ class LoginVC: UIViewController {
     //MARK: - @objc Action Helpers
     @objc private func signUpClicked() {
         let registerVC = RegisterVC()
+        registerVC.delegate = delegate
         navigationController?.pushViewController(registerVC, animated: true)
     }
     
@@ -126,7 +132,7 @@ class LoginVC: UIViewController {
                 print("Login error: \(error?.localizedDescription)")
                 return
             }
-            self.dismiss(animated: true, completion: nil)
+            self.delegate?.authenticationComplete()
         }
     }
 }

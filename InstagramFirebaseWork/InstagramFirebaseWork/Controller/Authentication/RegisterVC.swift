@@ -12,6 +12,7 @@ class RegisterVC: UIViewController {
     //MARK: - Variables
     private var viewModel                     = RegisterViewModel()
     private var profileImage: UIImage?
+    weak var delegate: AuthenticationProtocol?
     
     //MARK: - UI Elements
     private lazy var selectPhotoButton: UIButton = {
@@ -136,8 +137,7 @@ class RegisterVC: UIViewController {
                 print("Register error: \(error?.localizedDescription)")
                 return
             }
-            
-            self.dismiss(animated: true)
+            self.delegate?.authenticationComplete()
         }
     }
 }

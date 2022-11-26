@@ -10,29 +10,26 @@ import UIKit
 class ProfileVC: UICollectionViewController {
     
     //MARK: - Variables
-    var user: User? {
-        didSet { collectionView.reloadData() }
-    }
+    private var user: User
+    
     
     //MARK: - Lifecycle
+    init(user: User) {
+        self.user = user
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         configureCollectionView()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        fetchUser()
-    }
-    
-    //MARK: - API
-    private func fetchUser() {
-        UserService.fetchUser { user in
-            self.user = user
-            DispatchQueue.main.async { self.navigationItem.title = user.username }
-        }
-    }
-    
+
     
     //MARK: - Helpers
     private func configureUI() {
@@ -40,6 +37,7 @@ class ProfileVC: UICollectionViewController {
     }
     
     private func configureCollectionView(){
+        navigationItem.title = user.username
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: ProfileCell.reuseID)
         collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeader.reuseID)
     }
@@ -58,7 +56,7 @@ extension ProfileVC {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileHeader.reuseID, for: indexPath) as! ProfileHeader
-        if let user = user { header.viewModel = ProfileHeaderViewModel(user: user) }
+        header.viewModel = ProfileHeaderViewModel(user: user)
         return header
     }
 }

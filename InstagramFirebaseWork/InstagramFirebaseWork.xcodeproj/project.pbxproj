@@ -21,6 +21,7 @@
 		E2489388292BF56B002F31F2 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2489387292BF56B002F31F2 /* ImageUploader.swift */; };
 		E248938A292BF572002F31F2 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2489389292BF572002F31F2 /* AuthService.swift */; };
 		E25217E32928168200566974 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25217E22928168200566974 /* CustomTextField.swift */; };
+		E26A1E8029327A350093E181 /* SearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26A1E7F29327A350093E181 /* SearchCellViewModel.swift */; };
 		E270EDEB292D28DD00B1C473 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270EDEA292D28DD00B1C473 /* ProfileCell.swift */; };
 		E270EDED292D293000B1C473 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270EDEC292D293000B1C473 /* ProfileHeader.swift */; };
 		E29B12212926909700989E45 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29B12202926909700989E45 /* RegisterVC.swift */; };
@@ -59,6 +60,7 @@
 		E2489387292BF56B002F31F2 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		E2489389292BF572002F31F2 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E25217E22928168200566974 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		E26A1E7F29327A350093E181 /* SearchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellViewModel.swift; sourceTree = "<group>"; };
 		E270EDEA292D28DD00B1C473 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		E270EDEC292D293000B1C473 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		E29B12202926909700989E45 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
@@ -178,8 +180,9 @@
 		E23195F729068398008BF8CA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E26A1E7D29327A020093E181 /* Search */,
 				E2FB545A293101500043B580 /* ProfileHeader */,
-				E2BE5D352928ED1B00F7D7FC /* AuthenticationViewModel */,
+				E2BE5D352928ED1B00F7D7FC /* Authentication */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -219,6 +222,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		E26A1E7D29327A020093E181 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E26A1E7F29327A350093E181 /* SearchCellViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		E29B121F2926907900989E45 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,7 +266,7 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
-		E2BE5D352928ED1B00F7D7FC /* AuthenticationViewModel */ = {
+		E2BE5D352928ED1B00F7D7FC /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
 				E2BE5D432928FBEB00F7D7FC /* AuthenticationViewModelProtocol.swift */,
@@ -263,7 +274,7 @@
 				E2BE5D382928ED3B00F7D7FC /* RegisterViewModel.swift */,
 				E2BE5D452928FDED00F7D7FC /* FormViewModelProtocol.swift */,
 			);
-			path = AuthenticationViewModel;
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		E2BE5D3A2928EDB300F7D7FC /* TabBar */ = {
@@ -469,6 +480,7 @@
 				E270EDEB292D28DD00B1C473 /* ProfileCell.swift in Sources */,
 				E29B12232926909F00989E45 /* LoginVC.swift in Sources */,
 				E2BC577F290A784300849714 /* UIViewController+Ext.swift in Sources */,
+				E26A1E8029327A350093E181 /* SearchCellViewModel.swift in Sources */,
 				E248938A292BF572002F31F2 /* AuthService.swift in Sources */,
 				E23195E1290680B6008BF8CA /* AppDelegate.swift in Sources */,
 				E270EDED292D293000B1C473 /* ProfileHeader.swift in Sources */,
