@@ -84,7 +84,7 @@ extension SearchVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text?.lowercased() else { return }
         filteredUsers = users.filter({
-            $0.username.contains(searchText) || $0.fullname.contains(searchText) || $0.username.contains(searchText)
+            $0.username.contains(searchText) || $0.fullname.contains(searchText)
         })
         self.tableView.reloadData()
     }

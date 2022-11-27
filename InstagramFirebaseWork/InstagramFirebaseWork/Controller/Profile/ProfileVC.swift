@@ -57,6 +57,7 @@ extension ProfileVC {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileHeader.reuseID, for: indexPath) as! ProfileHeader
         header.viewModel = ProfileHeaderViewModel(user: user)
+        header.delegate  = self
         return header
     }
 }
@@ -87,3 +88,21 @@ extension ProfileVC: UICollectionViewDelegateFlowLayout {
     }
 }
     
+
+//MARK: - ProfileHeaderDelegateProtocol
+extension ProfileVC: ProfileHeaderDelegateProtocol {
+    func header(_ profileHeader: ProfileHeader, editProfileButtonClicked user: User) {
+        if user.isCurrentUser {
+            print("show edit profile here")
+        } else if user.isFollowed {
+            print("unfollow user here")
+        } else {
+            //FOLLOW USER
+            UserService.follow(uid: user.uid) { error in
+                print("DEBUG: Did follow user. Update UI NOW")
+            }
+        }
+    }
+    
+    
+}

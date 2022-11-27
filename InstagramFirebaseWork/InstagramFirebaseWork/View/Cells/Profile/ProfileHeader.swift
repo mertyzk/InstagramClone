@@ -5,15 +5,18 @@
 //  Created by Macbook Air on 22.11.2022.
 //
 
-import Foundation
 import UIKit
 import SDWebImage
+
+protocol ProfileHeaderDelegateProtocol: AnyObject {
+    func header(_ profileHeader: ProfileHeader, editProfileButtonClicked user: User)
+}
 
 class ProfileHeader: UICollectionReusableView {
     
     //MARK: - Properties
     static let reuseID = "profileHeader"
-    
+    weak var delegate: ProfileHeaderDelegateProtocol?
     var viewModel: ProfileHeaderViewModel? {
         didSet { setData() }
     }
@@ -64,8 +67,6 @@ class ProfileHeader: UICollectionReusableView {
         button.layer.borderWidth            = 1
         button.layer.borderColor            = UIColor.systemGray4.cgColor
         button.titleLabel?.font             = UIFont.systemFont(ofSize: 14)
-        button.setTitle("Edit Profile", for: .normal)
-        button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(editProfileButtonClicked), for: .touchUpInside)
         return button
     }()
@@ -156,12 +157,16 @@ class ProfileHeader: UICollectionReusableView {
     private func setData() {
         guard let viewModel                 = viewModel else { return }
         nameLabel.text                      = viewModel.fullname
+        editProfileButton.backgroundColor   = viewModel.followButtonBGColor
+        editProfileButton.setTitle(viewModel.followButtonText, for: .normal)
+        editProfileButton.setTitleColor(viewModel.followButtonTextColor, for: .normal)
         profileImageView.sd_setImage(with: viewModel.profileImageURL)
     }
     
     
     //MARK: - addTarget @objc Functions
     @objc func editProfileButtonClicked(){
-        print("Clicked at username button")
+        guard let viewModel = viewModel else { return }
+        delegate?.header(self, editProfileButtonClicked: viewModel.user)
     }
 }

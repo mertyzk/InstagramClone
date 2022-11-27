@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct User {
     let email:String
@@ -13,6 +14,9 @@ struct User {
     let profileImageURL: String
     let uid: String
     let username: String
+    var isCurrentUser: Bool { return Auth.auth().currentUser?.uid == uid }
+    var isFollowed = false
+
     
     init(dictionary: [String: Any]) {
         self.email           = dictionary["email"] as? String ?? ""
