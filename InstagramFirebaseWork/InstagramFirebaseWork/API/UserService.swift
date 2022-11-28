@@ -40,16 +40,25 @@ struct UserService {
     
     static func follow(uid: String, completion: @escaping FirestoreCompletion) {
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
-        COLLECTION_FOLLOWING.document(currentUID).collection("user-following").document(uid).setData([:]) { error in
-            COLLECTION_FOLLOWERS.document(uid).collection("user-followers").document(currentUID).setData([:], completion: completion)
+        COLLECTION_FOLLOWING.document(currentUID).collection(FirebaseEnum.userFollowing).document(uid).setData([:]) { error in
+            COLLECTION_FOLLOWERS.document(uid).collection(FirebaseEnum.userFollowers).document(currentUID).setData([:], completion: completion)
         }
     }
     
     
     static func unfollow(uid: String, completion: @escaping FirestoreCompletion) {
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
-        COLLECTION_FOLLOWING.document(currentUID).collection("user-following").document(uid).delete { error in
-            COLLECTION_FOLLOWERS.document(uid).collection("user-followers").document(currentUID).delete(completion: completion)
+        COLLECTION_FOLLOWING.document(currentUID).collection(FirebaseEnum.userFollowing).document(uid).delete { error in
+            COLLECTION_FOLLOWERS.document(uid).collection(FirebaseEnum.userFollowers).document(currentUID).delete(completion: completion)
+        }
+    }
+    
+    
+    static func checkIfUserIsFollowed(uid: String, completion: @escaping (Bool) -> Void) {
+        guard let currentUID = Auth.auth().currentUser?.uid else { return }
+        COLLECTION_FOLLOWING.document(currentUID).collection(FirebaseEnum.userFollowing).document(uid).getDocument { snapshot, error in
+            guard let isFollowed = snapshot?.exists else { return }
+            completion(isFollowed)
         }
     }
 }

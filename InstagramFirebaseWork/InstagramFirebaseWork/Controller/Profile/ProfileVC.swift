@@ -28,6 +28,7 @@ class ProfileVC: UICollectionViewController {
         super.viewDidLoad()
         configureUI()
         configureCollectionView()
+        checkIfUserFollowState()
     }
 
     
@@ -41,7 +42,17 @@ class ProfileVC: UICollectionViewController {
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: ProfileCell.reuseID)
         collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeader.reuseID)
     }
+    
+    
+    //MARK: - API
+    private func checkIfUserFollowState(){
+        UserService.checkIfUserIsFollowed(uid: user.uid) { isFollowed in
+            self.user.isFollowed = isFollowed
+            self.collectionView.reloadData()
+        }
+    }
 }
+
 
 //MARK: - UICollectionViewDataSource
 extension ProfileVC {
@@ -61,6 +72,7 @@ extension ProfileVC {
         return header
     }
 }
+
 
 //MARK: - UICollectionViewDelegate
 extension ProfileVC {
