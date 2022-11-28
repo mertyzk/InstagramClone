@@ -95,14 +95,17 @@ extension ProfileVC: ProfileHeaderDelegateProtocol {
         if user.isCurrentUser {
             print("show edit profile here")
         } else if user.isFollowed {
-            print("unfollow user here")
+            //UNFOLLOW USER
+            UserService.unfollow(uid: user.uid) { error in
+                self.user.isFollowed = false
+                self.collectionView.reloadData()
+            }
         } else {
             //FOLLOW USER
             UserService.follow(uid: user.uid) { error in
-                print("DEBUG: Did follow user. Update UI NOW")
+                self.user.isFollowed = true
+                self.collectionView.reloadData()
             }
         }
     }
-    
-    
 }
