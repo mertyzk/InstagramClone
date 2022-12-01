@@ -29,6 +29,7 @@ class ProfileVC: UICollectionViewController {
         configureUI()
         configureCollectionView()
         checkIfUserFollowState()
+        fetchUserStats()
     }
 
     
@@ -37,7 +38,8 @@ class ProfileVC: UICollectionViewController {
         collectionView.backgroundColor = .white
     }
     
-    private func configureCollectionView(){
+    
+    private func configureCollectionView() {
         navigationItem.title = user.username
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: ProfileCell.reuseID)
         collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeader.reuseID)
@@ -48,6 +50,14 @@ class ProfileVC: UICollectionViewController {
     private func checkIfUserFollowState(){
         UserService.checkIfUserIsFollowed(uid: user.uid) { isFollowed in
             self.user.isFollowed = isFollowed
+            self.collectionView.reloadData()
+        }
+    }
+    
+    
+    private func fetchUserStats() {
+        UserService.fetchUserStats(uid: user.uid) { userStats in
+            self.user.stats = userStats
             self.collectionView.reloadData()
         }
     }

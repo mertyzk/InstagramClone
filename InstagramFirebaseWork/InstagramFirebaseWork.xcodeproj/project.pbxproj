@@ -26,6 +26,7 @@
 		E270EDED292D293000B1C473 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270EDEC292D293000B1C473 /* ProfileHeader.swift */; };
 		E29B12212926909700989E45 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29B12202926909700989E45 /* RegisterVC.swift */; };
 		E29B12232926909F00989E45 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29B12222926909F00989E45 /* LoginVC.swift */; };
+		E2B190D62938DE85002D5426 /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B190D52938DE85002D5426 /* UserStats.swift */; };
 		E2BC577A290A77A600849714 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BC5779290A77A600849714 /* FeedCell.swift */; };
 		E2BC577F290A784300849714 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BC577E290A784300849714 /* UIViewController+Ext.swift */; };
 		E2BC5781290A785000849714 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BC5780290A785000849714 /* UIButton+Ext.swift */; };
@@ -65,6 +66,7 @@
 		E270EDEC292D293000B1C473 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		E29B12202926909700989E45 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		E29B12222926909F00989E45 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		E2B190D52938DE85002D5426 /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
 		E2BC5779290A77A600849714 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		E2BC577E290A784300849714 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		E2BC5780290A785000849714 /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				E2FB54582930F88D0043B580 /* User.swift */,
+				E2B190D52938DE85002D5426 /* UserStats.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				E270EDEB292D28DD00B1C473 /* ProfileCell.swift in Sources */,
 				E29B12232926909F00989E45 /* LoginVC.swift in Sources */,
 				E2BC577F290A784300849714 /* UIViewController+Ext.swift in Sources */,
+				E2B190D62938DE85002D5426 /* UserStats.swift in Sources */,
 				E26A1E8029327A350093E181 /* SearchCellViewModel.swift in Sources */,
 				E248938A292BF572002F31F2 /* AuthService.swift in Sources */,
 				E23195E1290680B6008BF8CA /* AppDelegate.swift in Sources */,

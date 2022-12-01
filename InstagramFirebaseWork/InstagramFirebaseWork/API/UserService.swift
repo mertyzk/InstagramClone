@@ -61,4 +61,15 @@ struct UserService {
             completion(isFollowed)
         }
     }
+    
+    
+    static func fetchUserStats(uid: String, completion: @escaping (UserStats) -> Void) {
+        COLLECTION_FOLLOWERS.document(uid).collection(FirebaseEnum.userFollowers).getDocuments { snapshot, _ in
+            let followers = snapshot?.documents.count ?? 0
+            COLLECTION_FOLLOWING.document(uid).collection(FirebaseEnum.userFollowing).getDocuments { snapshot, _ in
+                let following = snapshot?.documents.count ?? 0
+                completion(UserStats(followers: followers, following: following))
+            }
+        }
+    }
 }

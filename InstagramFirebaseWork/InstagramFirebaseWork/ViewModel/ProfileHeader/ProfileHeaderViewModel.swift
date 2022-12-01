@@ -25,6 +25,19 @@ struct ProfileHeaderViewModel {
         return user.isFollowed ? "Following" : "Follow"
     }
     
+    var numberOfFollowers: NSAttributedString {
+        return attributedTextForLabel(value: user.stats.followers, label: "Followers")
+    }
+    
+    var numberOfFollowing: NSAttributedString {
+        return attributedTextForLabel(value: user.stats.following, label: "Following")
+    }
+    
+    var numberOfPosts: NSAttributedString {
+        return attributedTextForLabel(value: 5, label: "Posts")
+    }
+    
+    
     var followButtonBGColor: UIColor {
         return user.isCurrentUser ? .white : .systemBlue
     }
@@ -34,8 +47,14 @@ struct ProfileHeaderViewModel {
     }
     
     
-    
     init(user: User) {
         self.user = user
+    }
+    
+    
+    func attributedTextForLabel(value: Int, label: String) -> NSAttributedString {
+        let attributedText = NSMutableAttributedString(string: "\(value)\n", attributes: [.font : UIFont.boldSystemFont(ofSize: 14)])
+        attributedText.append(NSAttributedString(string: label, attributes: [.font : UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray]))
+        return attributedText
     }
 }
