@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchVC: UITableViewController {
+final class SearchVC: UITableViewController {
     
     //MARK: - Properties
     private var users            = [User]()

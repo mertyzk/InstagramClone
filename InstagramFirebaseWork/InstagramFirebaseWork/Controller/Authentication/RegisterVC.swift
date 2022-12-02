@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterVC: UIViewController {
+final class RegisterVC: UIViewController {
     
     //MARK: - Variables
     private var viewModel                     = RegisterViewModel()
@@ -92,7 +92,7 @@ class RegisterVC: UIViewController {
         
     }
     
-    //MARK: - @objc Action Helpers
+    //MARK: - @objc Actions
     @objc private func loginClicked() {
         navigationController?.popViewController(animated: true)
     }

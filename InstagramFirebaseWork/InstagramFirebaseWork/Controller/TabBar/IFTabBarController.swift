@@ -7,8 +7,9 @@
 
 import UIKit
 import Firebase
+import YPImagePicker
 
-class IFTabBarController: UITabBarController {
+final class IFTabBarController: UITabBarController {
     
     //MARK: - Properties
     private var user: User? {
@@ -52,6 +53,7 @@ class IFTabBarController: UITabBarController {
     
     //MARK: - Helpers
     private func configureVCs(withUser user: User){
+        self.delegate          = self
         let layout             = UICollectionViewFlowLayout()
         let profile            = ProfileVC(user: user)
         let feedVC             = configureNavigationController(rootVC: FeedVC(collectionViewLayout: layout), unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"))
@@ -70,6 +72,19 @@ class IFTabBarController: UITabBarController {
         navigation.tabBarItem.selectedImage = selectedImage
         return navigation
     }
+    
+    
+    private func didFinishPickingMedia(_ picker: YPImagePicker) {
+        picker.didFinishPicking { items, _ in
+            picker.dismiss(animated: false) {
+                guard let selectedImage     = items.singlePhoto?.image else { return }
+                let uploadPostVC            = UploadPostVC()
+                let navigationController    = UINavigationController(rootViewController: uploadPostVC)
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: false)
+            }
+        }
+    }
 }
 
 
@@ -78,5 +93,28 @@ extension IFTabBarController: AuthenticationProtocol {
     func authenticationComplete() {
         fetchUser()
         dismiss(animated: true, completion: nil)
+    }
+}
+
+
+//MARK: - UITabBarControllerDelegate
+extension IFTabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let index                           = viewControllers?.firstIndex(of: viewController)
+        if index == 2 {
+            var config                      = YPImagePickerConfiguration()
+            config.library.mediaType        = .photo
+            config.startOnScreen            = .library
+            config.screens                  = [.library]
+            config.hidesStatusBar           = false
+            config.hidesBottomBar           = false
+            config.library.maxNumberOfItems = 1
+            config.shouldSaveNewPicturesToAlbum = false
+            let picker                      = YPImagePicker(configuration: config)
+            picker.modalPresentationStyle   = .fullScreen
+            present(picker, animated: true)
+            didFinishPickingMedia(picker)
+        }
+        return true
     }
 }

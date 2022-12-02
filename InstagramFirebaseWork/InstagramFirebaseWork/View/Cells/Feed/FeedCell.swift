@@ -10,6 +10,10 @@ import UIKit
 class FeedCell: UICollectionViewCell {
     
     //MARK: - Properties
+    static let reuseID = "feedCell"
+    
+    
+    //MARK: - UI Elements
     private lazy var profileImageView: UIImageView = {
         let imageArea                       = UIImageView()
         imageArea.image                     = #imageLiteral(resourceName: "venom-7")
@@ -90,7 +94,6 @@ class FeedCell: UICollectionViewCell {
     
     
     //MARK: - Lifecycle
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -102,7 +105,6 @@ class FeedCell: UICollectionViewCell {
     
     
     //MARK: - Helpers
-    
     private func configure(){
         backgroundColor = .white
         addSubviewsExt(profileImageView, userNameButton, postImageArea, actionStackView, likesLabel, captionLabel, postTimeLabel)
@@ -125,7 +127,7 @@ class FeedCell: UICollectionViewCell {
     }
     
     
-    //MARK: - addTarget @objc Functions
+    //MARK: - @objc Actions
     @objc func userNameButtonClicked(){
         print("Clicked at username button")
     }

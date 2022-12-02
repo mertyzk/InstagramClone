@@ -8,9 +8,7 @@
 import UIKit
 import Firebase
 
-private let reuseIdentifier = "Cell"
-
-class FeedVC: UICollectionViewController {
+final class FeedVC: UICollectionViewController {
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -29,11 +27,11 @@ class FeedVC: UICollectionViewController {
     
     
     private func configureCollectionView(){
-        collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.reuseID)
     }
     
     
-    //MARK: - @objc Action Helpers
+    //MARK: - @objc Actions
     @objc private func logoutPressed() {
         do {
             try Auth.auth().signOut()
@@ -57,7 +55,7 @@ extension FeedVC {
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
+        let item = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.reuseID, for: indexPath) as! FeedCell
         return item
     }
 }

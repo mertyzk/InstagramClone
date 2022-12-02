@@ -11,7 +11,7 @@ protocol AuthenticationProtocol: AnyObject {
     func authenticationComplete()
 }
 
-class LoginVC: UIViewController {
+final class LoginVC: UIViewController {
     
     //MARK: - Variables
     private var viewModel = LoginViewModel()
@@ -103,7 +103,7 @@ class LoginVC: UIViewController {
     }
     
     
-    //MARK: - @objc Action Helpers
+    //MARK: - @objc Actions
     @objc private func signUpClicked() {
         let registerVC = RegisterVC()
         registerVC.delegate = delegate

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileVC: UICollectionViewController {
+final class ProfileVC: UICollectionViewController {
     
     //MARK: - Variables
     private var user: User

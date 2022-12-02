@@ -157,7 +157,7 @@ class ProfileHeader: UICollectionReusableView {
     }
     
     
-    //MARK: - addTarget @objc Functions
+    //MARK: - @objc Actions
     @objc func editProfileButtonClicked(){
         guard let viewModel = viewModel else { return }
         delegate?.header(self, editProfileButtonClicked: viewModel.user)
