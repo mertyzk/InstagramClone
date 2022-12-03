@@ -9,7 +9,6 @@ import UIKit
 
 final class UploadPostVC: UIViewController {
     
-    
     //MARK: - UI Elements
     private lazy var photoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -20,18 +19,21 @@ final class UploadPostVC: UIViewController {
         return imageView
     }()
     
-    private lazy var captionTextView: UITextView = {
-        let textView = UITextView()
+    private lazy var captionTextView: InputTextView = {
+        let textView = InputTextView()
+        textView.placeHolderText = "Enter Caption"
+        textView.font   = UIFont.systemFont(ofSize: 20)
         textView.layer.cornerRadius = 10
         textView.layer.borderWidth = 0.3
         textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.delegate = self
         return textView
     }()
     
     private lazy var characterCountLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
-        label.font      = UIFont.systemFont(ofSize: 14)
+        label.font      = UIFont.systemFont(ofSize: 20)
         label.text      = "0/100"
         return label
     }()
@@ -58,8 +60,15 @@ final class UploadPostVC: UIViewController {
         photoImageView.setDimensions(height: 240, width: 240)
         photoImageView.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 5)
         photoImageView.centerX(inView: view)
-        captionTextView.anchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 12, paddingRight: 12, height: 64)
+        captionTextView.anchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 12, paddingRight: 12, height: 90)
         characterCountLabel.anchor(top: captionTextView.bottomAnchor, right: captionTextView.rightAnchor, paddingTop: 5)
+    }
+    
+    
+    private func checkMaxLength(_ textView: UITextView) {
+        if (textView.text.count) > 100 {
+            textView.deleteBackward()
+        }
     }
     
     
@@ -71,5 +80,14 @@ final class UploadPostVC: UIViewController {
     @objc private func shareButtonPressed() {
         print("Share button pressed")
     }
+}
 
+
+//MARK: UITextViewDelegate
+extension UploadPostVC: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        checkMaxLength(textView)
+        let count = textView.text.count
+        characterCountLabel.text = "\(count)/100"
+    }
 }
