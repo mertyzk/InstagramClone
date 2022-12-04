@@ -7,34 +7,43 @@
 
 import UIKit
 
+protocol UploadPostVCDelegateProtocol: AnyObject {
+    func controllerDidFinishUploadingPost(_ controller: UploadPostVC)
+}
+
 final class UploadPostVC: UIViewController {
+    
+    //MARK: - Properties
+    var selectedImage: UIImage? {
+        didSet { photoImageView.image = selectedImage }
+    }
+    weak var delegate: UploadPostVCDelegateProtocol?
     
     //MARK: - UI Elements
     private lazy var photoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 10
-        imageView.image = #imageLiteral(resourceName: "venom-7")
+        let imageView                     = UIImageView()
+        imageView.contentMode             = .scaleAspectFill
+        imageView.clipsToBounds           = true
+        imageView.layer.cornerRadius      = 10
         return imageView
     }()
     
     private lazy var captionTextView: InputTextView = {
         let textView = InputTextView()
-        textView.placeHolderText = "Enter Caption"
-        textView.font   = UIFont.systemFont(ofSize: 20)
-        textView.layer.cornerRadius = 10
-        textView.layer.borderWidth = 0.3
-        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.placeHolderText          = "Enter Caption"
+        textView.font                     = UIFont.systemFont(ofSize: 20)
+        textView.layer.cornerRadius       = 10
+        textView.layer.borderWidth        = 0.3
+        textView.layer.borderColor        = UIColor.lightGray.cgColor
         textView.delegate = self
         return textView
     }()
     
     private lazy var characterCountLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .lightGray
-        label.font      = UIFont.systemFont(ofSize: 20)
-        label.text      = "0/100"
+        label.textColor                   = .lightGray
+        label.font                        = UIFont.systemFont(ofSize: 20)
+        label.text                        = "0/100"
         return label
     }()
     
@@ -77,8 +86,16 @@ final class UploadPostVC: UIViewController {
         dismiss(animated: false)
     }
     
+    
     @objc private func shareButtonPressed() {
-        print("Share button pressed")
+        guard let image = selectedImage, let caption = captionTextView.text else { return }
+        PostService.uploadPost(caption: caption, image: image) { error in
+            if let error = error {
+                print("DEBUG ERROR. FAILED TO UPLOAD POST WITH ERROR: \(error.localizedDescription)")
+            }
+            //self.dismiss(animated: true)
+            self.delegate?.controllerDidFinishUploadingPost(self)
+        }
     }
 }
 

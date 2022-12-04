@@ -53,16 +53,16 @@ final class IFTabBarController: UITabBarController {
     
     //MARK: - Helpers
     private func configureVCs(withUser user: User){
-        self.delegate          = self
-        let layout             = UICollectionViewFlowLayout()
-        let profile            = ProfileVC(user: user)
-        let feedVC             = configureNavigationController(rootVC: FeedVC(collectionViewLayout: layout), unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"))
-        let searchVC           = configureNavigationController(rootVC: SearchVC(), unselectedImage: #imageLiteral(resourceName: "search_unselected"), selectedImage: #imageLiteral(resourceName: "search_selected"))
-        let imageSelectorVC    = configureNavigationController(rootVC: ImageSelectorVC(), unselectedImage: #imageLiteral(resourceName: "plus_unselected"), selectedImage: #imageLiteral(resourceName: "plus_unselected"))
-        let notificationsVC    = configureNavigationController(rootVC: NotificationsVC(), unselectedImage: #imageLiteral(resourceName: "like_unselected"), selectedImage: #imageLiteral(resourceName: "like_selected"))
-        let profileVC          = configureNavigationController(rootVC: profile, unselectedImage: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected"))
+        self.delegate                       = self
+        let layout                          = UICollectionViewFlowLayout()
+        let profile                         = ProfileVC(user: user)
+        let feedVC                          = configureNavigationController(rootVC: FeedVC(collectionViewLayout: layout), unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"))
+        let searchVC                        = configureNavigationController(rootVC: SearchVC(), unselectedImage: #imageLiteral(resourceName: "search_unselected"), selectedImage: #imageLiteral(resourceName: "search_selected"))
+        let imageSelectorVC                 = configureNavigationController(rootVC: ImageSelectorVC(), unselectedImage: #imageLiteral(resourceName: "plus_unselected"), selectedImage: #imageLiteral(resourceName: "plus_unselected"))
+        let notificationsVC                 = configureNavigationController(rootVC: NotificationsVC(), unselectedImage: #imageLiteral(resourceName: "like_unselected"), selectedImage: #imageLiteral(resourceName: "like_selected"))
+        let profileVC                       = configureNavigationController(rootVC: profile, unselectedImage: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected"))
         
-        viewControllers        = [feedVC, searchVC, imageSelectorVC, notificationsVC, profileVC]
+        viewControllers                     = [feedVC, searchVC, imageSelectorVC, notificationsVC, profileVC]
     }
     
     
@@ -79,6 +79,8 @@ final class IFTabBarController: UITabBarController {
             picker.dismiss(animated: false) {
                 guard let selectedImage     = items.singlePhoto?.image else { return }
                 let uploadPostVC            = UploadPostVC()
+                uploadPostVC.selectedImage  = selectedImage
+                uploadPostVC.delegate       = self
                 let navigationController    = UINavigationController(rootViewController: uploadPostVC)
                 navigationController.modalPresentationStyle = .fullScreen
                 self.present(navigationController, animated: false)
@@ -116,5 +118,14 @@ extension IFTabBarController: UITabBarControllerDelegate {
             didFinishPickingMedia(picker)
         }
         return true
+    }
+}
+
+
+//MARK: - UploadPostVCDelegateProtocol
+extension IFTabBarController: UploadPostVCDelegateProtocol {
+    func controllerDidFinishUploadingPost(_ controller: UploadPostVC) {
+        selectedIndex = 0
+        controller.dismiss(animated: true)
     }
 }

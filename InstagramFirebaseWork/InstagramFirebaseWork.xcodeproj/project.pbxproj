@@ -38,6 +38,7 @@
 		E2BE5D392928ED3B00F7D7FC /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE5D382928ED3B00F7D7FC /* RegisterViewModel.swift */; };
 		E2BE5D442928FBEB00F7D7FC /* AuthenticationViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE5D432928FBEB00F7D7FC /* AuthenticationViewModelProtocol.swift */; };
 		E2BE5D462928FDED00F7D7FC /* FormViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE5D452928FDED00F7D7FC /* FormViewModelProtocol.swift */; };
+		E2E0FE86293CA9B100E0064C /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E0FE85293CA9B100E0064C /* PostService.swift */; };
 		E2FB54572930F5610043B580 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB54562930F5610043B580 /* UserService.swift */; };
 		E2FB54592930F88D0043B580 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB54582930F88D0043B580 /* User.swift */; };
 		E2FB545C293101630043B580 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB545B293101630043B580 /* ProfileHeaderViewModel.swift */; };
@@ -80,6 +81,7 @@
 		E2BE5D382928ED3B00F7D7FC /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		E2BE5D432928FBEB00F7D7FC /* AuthenticationViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModelProtocol.swift; sourceTree = "<group>"; };
 		E2BE5D452928FDED00F7D7FC /* FormViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModelProtocol.swift; sourceTree = "<group>"; };
+		E2E0FE85293CA9B100E0064C /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		E2FB54562930F5610043B580 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		E2FB54582930F88D0043B580 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E2FB545B293101630043B580 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				E2489387292BF56B002F31F2 /* ImageUploader.swift */,
 				E2489389292BF572002F31F2 /* AuthService.swift */,
 				E2FB54562930F5610043B580 /* UserService.swift */,
+				E2E0FE85293CA9B100E0064C /* PostService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				E270EDED292D293000B1C473 /* ProfileHeader.swift in Sources */,
 				E2FB545C293101630043B580 /* ProfileHeaderViewModel.swift in Sources */,
 				E231960529068DED008BF8CA /* ProfileVC.swift in Sources */,
+				E2E0FE86293CA9B100E0064C /* PostService.swift in Sources */,
 				E231960329068DE1008BF8CA /* NotificationsVC.swift in Sources */,
 				E2BE5D462928FDED00F7D7FC /* FormViewModelProtocol.swift in Sources */,
 				E2BE5D392928ED3B00F7D7FC /* RegisterViewModel.swift in Sources */,
