@@ -20,13 +20,13 @@ final class FeedVC: UICollectionViewController {
     
     //MARK: - Helpers
     private func configureUI(){
-        collectionView.backgroundColor    = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutPressed))
         navigationItem.title              = "Feed"
     }
     
     
     private func configureCollectionView(){
+        collectionView.backgroundColor    = .white
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.reuseID)
     }
     

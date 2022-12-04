@@ -89,6 +89,7 @@ final class UploadPostVC: UIViewController {
     
     @objc private func shareButtonPressed() {
         guard let image = selectedImage, let caption = captionTextView.text else { return }
+        showLoader(true)
         PostService.uploadPost(caption: caption, image: image) { error in
             if let error = error {
                 print("DEBUG ERROR. FAILED TO UPLOAD POST WITH ERROR: \(error.localizedDescription)")
@@ -96,6 +97,7 @@ final class UploadPostVC: UIViewController {
             //self.dismiss(animated: true)
             self.delegate?.controllerDidFinishUploadingPost(self)
         }
+        showLoader(false)
     }
 }
 

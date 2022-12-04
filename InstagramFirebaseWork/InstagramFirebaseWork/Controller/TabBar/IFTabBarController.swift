@@ -23,7 +23,7 @@ final class IFTabBarController: UITabBarController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar.backgroundColor = #colorLiteral(red: 0.8650696874, green: 0.8748025298, blue: 0.874617517, alpha: 1)
+        tabBar.barTintColor    = #colorLiteral(red: 0.8650696874, green: 0.8748025298, blue: 0.874617517, alpha: 1)
         tabBar.tintColor       = .black
         checkCurrentUser()
         fetchUser()
