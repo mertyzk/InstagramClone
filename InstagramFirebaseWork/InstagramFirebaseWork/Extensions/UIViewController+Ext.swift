@@ -20,9 +20,9 @@ extension UIViewController {
         gradient.frame                              = view.frame
     }
     
+    
     func showLoader(_ show: Bool) {
         view.endEditing(true)
-        
         if show {
             UIViewController.hud.show(in: view)
         } else {

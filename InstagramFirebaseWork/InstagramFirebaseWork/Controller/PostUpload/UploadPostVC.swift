@@ -93,6 +93,7 @@ final class UploadPostVC: UIViewController {
         PostService.uploadPost(caption: caption, image: image) { error in
             if let error = error {
                 print("DEBUG ERROR. FAILED TO UPLOAD POST WITH ERROR: \(error.localizedDescription)")
+                return
             }
             //self.dismiss(animated: true)
             self.delegate?.controllerDidFinishUploadingPost(self)

@@ -11,6 +11,7 @@ typealias FirestoreCompletion = (Error?) -> Void
 
 struct UserService {
     
+    //MARK: - Fetch a User
     static func fetchUser(completion: @escaping(User) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         COLLECTION_USERS.document(uid).getDocument { snapshot, error in
@@ -21,6 +22,7 @@ struct UserService {
     }
     
     
+    //MARK: - Fetch All Users
     static func fetchUsers(completion: @escaping([User]) -> Void) {
         //var users = [User]()
         COLLECTION_USERS.getDocuments { snapshot, error in
@@ -38,6 +40,7 @@ struct UserService {
     }
     
     
+    //MARK: - Follow to a user
     static func follow(uid: String, completion: @escaping FirestoreCompletion) {
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
         COLLECTION_FOLLOWING.document(currentUID).collection(FirebaseEnum.userFollowing).document(uid).setData([:]) { error in
@@ -46,6 +49,7 @@ struct UserService {
     }
     
     
+    //MARK: - Unfollow to a user
     static func unfollow(uid: String, completion: @escaping FirestoreCompletion) {
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
         COLLECTION_FOLLOWING.document(currentUID).collection(FirebaseEnum.userFollowing).document(uid).delete { error in
@@ -54,6 +58,7 @@ struct UserService {
     }
     
     
+    //MARK: - Check Follow State
     static func checkIfUserIsFollowed(uid: String, completion: @escaping (Bool) -> Void) {
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
         COLLECTION_FOLLOWING.document(currentUID).collection(FirebaseEnum.userFollowing).document(uid).getDocument { snapshot, error in
@@ -63,6 +68,7 @@ struct UserService {
     }
     
     
+    //MARK: - Fetch User's Stats
     static func fetchUserStats(uid: String, completion: @escaping (UserStats) -> Void) {
         COLLECTION_FOLLOWERS.document(uid).collection(FirebaseEnum.userFollowers).getDocuments { snapshot, _ in
             let followers = snapshot?.documents.count ?? 0

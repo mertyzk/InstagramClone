@@ -11,12 +11,11 @@ class FeedCell: UICollectionViewCell {
     
     //MARK: - Properties
     static let reuseID = "feedCell"
-    
+    var viewModel: PostViewModel? { didSet { configure() } }
     
     //MARK: - UI Elements
     private lazy var profileImageView: UIImageView = {
         let imageArea                       = UIImageView()
-        imageArea.image                     = #imageLiteral(resourceName: "venom-7")
         imageArea.clipsToBounds             = true
         imageArea.isUserInteractionEnabled  = true
         imageArea.layer.cornerRadius        = 20
@@ -35,7 +34,6 @@ class FeedCell: UICollectionViewCell {
     
     private lazy var postImageArea: UIImageView = {
         let imageArea                       = UIImageView()
-        imageArea.image                     = FeedImages.defaultImage
         imageArea.clipsToBounds             = true
         imageArea.isUserInteractionEnabled  = true
         imageArea.contentMode               = .scaleAspectFill
@@ -72,7 +70,6 @@ class FeedCell: UICollectionViewCell {
     
     private lazy var captionLabel: UILabel = {
         let label                           = UILabel()
-        label.text                          = "Test caption for now"
         label.font                          = UIFont.systemFont(ofSize: 14)
         return label
     }()
@@ -96,7 +93,7 @@ class FeedCell: UICollectionViewCell {
     //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        configureUIElements()
     }
     
     required init?(coder: NSCoder) {
@@ -105,7 +102,7 @@ class FeedCell: UICollectionViewCell {
     
     
     //MARK: - Helpers
-    private func configure(){
+    private func configureUIElements(){
         backgroundColor = .white
         addSubviewsExt(profileImageView, userNameButton, postImageArea, actionStackView, likesLabel, captionLabel, postTimeLabel)
         
@@ -124,6 +121,13 @@ class FeedCell: UICollectionViewCell {
         captionLabel.anchor(top: likesLabel.bottomAnchor, left: leftAnchor, paddingTop: 8, paddingLeft: 8)
         
         postTimeLabel.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, paddingTop: 8, paddingLeft: 8)
+    }
+    
+    
+    func configure(){
+        guard let viewModel = viewModel else { return }
+        captionLabel.text = viewModel.caption
+        postImageArea.sd_setImage(with: viewModel.imageURL)
     }
     
     

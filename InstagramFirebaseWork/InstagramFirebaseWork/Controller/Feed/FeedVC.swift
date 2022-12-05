@@ -10,11 +10,15 @@ import Firebase
 
 final class FeedVC: UICollectionViewController {
     
+    //MARK: - Variables
+    private var posts = [Post]()
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         configureCollectionView()
+        fetchPosts()
     }
     
     
@@ -28,6 +32,15 @@ final class FeedVC: UICollectionViewController {
     private func configureCollectionView(){
         collectionView.backgroundColor    = .white
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.reuseID)
+    }
+    
+    
+    //MARK: - API
+    private func fetchPosts() {
+        PostService.fetchPosts { posts in
+            self.posts = posts
+            self.collectionView.reloadData()
+        }
     }
     
     
@@ -50,12 +63,13 @@ final class FeedVC: UICollectionViewController {
 //MARK: - UICollectionViewDataSource
 extension FeedVC {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return posts.count
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.reuseID, for: indexPath) as! FeedCell
+        item.viewModel = PostViewModel(post: posts[indexPath.row])
         return item
     }
 }
