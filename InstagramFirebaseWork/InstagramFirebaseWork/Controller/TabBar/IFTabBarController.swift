@@ -128,5 +128,8 @@ extension IFTabBarController: UploadPostVCDelegateProtocol {
     func controllerDidFinishUploadingPost(_ controller: UploadPostVC) {
         selectedIndex = 0
         controller.dismiss(animated: true)
+        guard let feedNavigation            = viewControllers?.first as? UINavigationController else { return }
+        guard let feed                      = feedNavigation.viewControllers.first as? FeedVC else { return }
+        feed.detectRefresh()
     }
 }

@@ -38,8 +38,8 @@ final class FeedVC: UICollectionViewController {
     
     private func configureCollectionViewRefresher() {
         let customRefresher               = UIRefreshControl()
-        customRefresher.addTarget(self, action: #selector(detectRefresh), for: .valueChanged)
         collectionView.refreshControl     = customRefresher
+        customRefresher.addTarget(self, action: #selector(detectRefresh), for: .valueChanged)
     }
     
     
@@ -68,7 +68,7 @@ final class FeedVC: UICollectionViewController {
     }
     
     
-    @objc private func detectRefresh() {
+    @objc func detectRefresh() {
         posts.removeAll()
         fetchPosts(isRenewable: true)
     }
