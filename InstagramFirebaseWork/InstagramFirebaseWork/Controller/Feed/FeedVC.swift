@@ -16,9 +16,9 @@ final class FeedVC: UICollectionViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
         configureCollectionView()
-        fetchPosts()
+        configureUI()
+        fetchPosts(isRenewable: false)
     }
     
     
@@ -26,6 +26,7 @@ final class FeedVC: UICollectionViewController {
     private func configureUI(){
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutPressed))
         navigationItem.title              = "Feed"
+        configureCollectionViewRefresher()
     }
     
     
@@ -35,14 +36,22 @@ final class FeedVC: UICollectionViewController {
     }
     
     
-    //MARK: - API
-    private func fetchPosts() {
-        PostService.fetchPosts { posts in
-            self.posts = posts
-            self.collectionView.reloadData()
-        }
+    private func configureCollectionViewRefresher() {
+        let customRefresher               = UIRefreshControl()
+        customRefresher.addTarget(self, action: #selector(detectRefresh), for: .valueChanged)
+        collectionView.refreshControl     = customRefresher
     }
     
+    
+    //MARK: - API
+    private func fetchPosts(isRenewable: Bool) {
+        PostService.fetchPosts { posts in
+            self.posts = posts
+            if isRenewable { self.collectionView.refreshControl?.endRefreshing() }
+            DispatchQueue.main.async { self.collectionView.reloadData() }
+        }
+    }
+
     
     //MARK: - @objc Actions
     @objc private func logoutPressed() {
@@ -56,6 +65,12 @@ final class FeedVC: UICollectionViewController {
         } catch {
             print("Failed to sign out")
         }
+    }
+    
+    
+    @objc private func detectRefresh() {
+        posts.removeAll()
+        fetchPosts(isRenewable: true)
     }
 }
 
