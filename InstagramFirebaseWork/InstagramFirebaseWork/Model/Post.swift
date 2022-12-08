@@ -14,13 +14,17 @@ struct Post {
     let imageURL: String
     let postID: String
     let timestamp: Timestamp
+    let ownerImageURL: String
+    let ownerUsername: String
     
     init(postId: String, dictionary: [String: Any]) {
-        self.postID                 = postId
-        self.caption                = dictionary["caption"] as? String ?? ""
-        self.likes                  = dictionary["likes"] as? Int ?? 0
-        self.imageURL               = dictionary["imageURL"] as? String ?? ""
-        self.timestamp              = dictionary["timestamp"] as? Timestamp ?? Timestamp(date: Date())
-        self.ownerUid               = dictionary["ownerUid"] as? String ?? ""
+        self.postID        = postId
+        self.caption       = dictionary["caption"] as? String ?? ""
+        self.likes         = dictionary["likes"] as? Int ?? 0
+        self.imageURL      = dictionary["imageURL"] as? String ?? ""
+        self.timestamp     = dictionary["timestamp"] as? Timestamp ?? Timestamp(date: Date())
+        self.ownerUid      = dictionary["ownerUid"] as? String ?? ""
+        self.ownerImageURL = dictionary["ownerImageURL"] as? String ?? ""
+        self.ownerUsername = dictionary["ownerUsername"] as? String ?? ""
     }
 }

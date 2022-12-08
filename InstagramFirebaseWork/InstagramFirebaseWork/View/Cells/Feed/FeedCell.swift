@@ -20,13 +20,13 @@ class FeedCell: UICollectionViewCell {
         imageArea.isUserInteractionEnabled  = true
         imageArea.layer.cornerRadius        = 20
         imageArea.contentMode               = .scaleAspectFill
+        imageArea.backgroundColor           = .lightGray
         return imageArea
     }()
     
     private lazy var userNameButton: UIButton = {
         let button                          = UIButton(type: .system)
         button.titleLabel?.font             = UIFont.boldSystemFont(ofSize: 13)
-        button.setTitle("Hello", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(userNameButtonClicked), for: .touchUpInside)
         return button
@@ -63,7 +63,6 @@ class FeedCell: UICollectionViewCell {
     
     private lazy var likesLabel: UILabel = {
         let label                           = UILabel()
-        label.text                          = "2 like"
         label.font                          = UIFont.boldSystemFont(ofSize: 13)
         return label
     }()
@@ -76,7 +75,6 @@ class FeedCell: UICollectionViewCell {
     
     private lazy var postTimeLabel: UILabel = {
         let label                           = UILabel()
-        label.text                          = "3 days ago"
         label.font                          = UIFont.systemFont(ofSize: 12)
         label.textColor                     = .lightGray
         return label
@@ -127,7 +125,10 @@ class FeedCell: UICollectionViewCell {
     func configure(){
         guard let viewModel = viewModel else { return }
         captionLabel.text = viewModel.caption
+        likesLabel.text   = viewModel.likesLabelText
+        userNameButton.setTitle(viewModel.username, for: .normal)
         postImageArea.sd_setImage(with: viewModel.imageURL)
+        profileImageView.sd_setImage(with: viewModel.profileImageURL)
     }
     
     

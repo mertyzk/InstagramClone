@@ -14,6 +14,7 @@ protocol UploadPostVCDelegateProtocol: AnyObject {
 final class UploadPostVC: UIViewController {
     
     //MARK: - Properties
+    var currentUser: User?
     var selectedImage: UIImage? {
         didSet { photoImageView.image = selectedImage }
     }
@@ -88,9 +89,9 @@ final class UploadPostVC: UIViewController {
     
     
     @objc private func shareButtonPressed() {
-        guard let image = selectedImage, let caption = captionTextView.text else { return }
+        guard let image = selectedImage, let caption = captionTextView.text, let user = currentUser else { return }
         showLoader(true)
-        PostService.uploadPost(caption: caption, image: image) { error in
+        PostService.uploadPost(caption: caption, image: image, user: user) { error in
             if let error = error {
                 print("DEBUG ERROR. FAILED TO UPLOAD POST WITH ERROR: \(error.localizedDescription)")
                 return
