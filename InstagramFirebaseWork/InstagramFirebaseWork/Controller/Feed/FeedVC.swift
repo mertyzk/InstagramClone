@@ -12,6 +12,7 @@ final class FeedVC: UICollectionViewController {
     
     //MARK: - Variables
     private var posts = [Post]()
+    var post: Post?
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -45,6 +46,7 @@ final class FeedVC: UICollectionViewController {
     
     //MARK: - API
     private func fetchPosts(isRenewable: Bool) {
+        guard post == nil else { return }
         PostService.fetchPosts { posts in
             self.posts = posts
             if isRenewable { self.collectionView.refreshControl?.endRefreshing() }
@@ -78,13 +80,17 @@ final class FeedVC: UICollectionViewController {
 //MARK: - UICollectionViewDataSource
 extension FeedVC {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts.count
+        return post == nil ? posts.count : 1
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.reuseID, for: indexPath) as! FeedCell
-        item.viewModel = PostViewModel(post: posts[indexPath.row])
+        if let post = post {
+            item.viewModel = PostViewModel(post: post)
+        } else {
+            item.viewModel = PostViewModel(post: posts[indexPath.row])
+        }
         return item
     }
 }

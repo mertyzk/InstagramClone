@@ -11,12 +11,15 @@ class ProfileCell: UICollectionViewCell {
     
     //MARK: - Properties
     static let reuseID = "profileCell"
-    
+    var viewModel: PostViewModel? {
+        didSet {
+            configure()
+        }
+    }
     
     //MARK: - UIElements
     private lazy var postImageView: UIImageView = {
         let imageArea                       = UIImageView()
-        imageArea.image                     = #imageLiteral(resourceName: "venom-7")
         imageArea.clipsToBounds             = true
         imageArea.contentMode               = .scaleAspectFill
         return imageArea
@@ -26,7 +29,7 @@ class ProfileCell: UICollectionViewCell {
     //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        configureUIElements()
     }
     
     required init?(coder: NSCoder) {
@@ -35,9 +38,15 @@ class ProfileCell: UICollectionViewCell {
     
     
     //MARK: - Helpers
-    private func configure(){
+    private func configureUIElements(){
         backgroundColor = .lightGray
         addSubview(postImageView)
         postImageView.fillSuperview()
+    }
+    
+    
+    private func configure() {
+        guard let viewModel = viewModel else { return }
+        postImageView.sd_setImage(with: viewModel.imageURL)
     }
 }

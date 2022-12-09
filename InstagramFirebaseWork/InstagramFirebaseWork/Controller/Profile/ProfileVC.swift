@@ -11,6 +11,7 @@ final class ProfileVC: UICollectionViewController {
     
     //MARK: - Variables
     private var user: User
+    private var posts: [Post] = []
     
     
     //MARK: - Lifecycle
@@ -30,6 +31,7 @@ final class ProfileVC: UICollectionViewController {
         configureCollectionView()
         checkIfUserFollowState()
         fetchUserStats()
+        fetchUserPosts()
     }
 
     
@@ -50,7 +52,7 @@ final class ProfileVC: UICollectionViewController {
     private func checkIfUserFollowState(){
         UserService.checkIfUserIsFollowed(uid: user.uid) { isFollowed in
             self.user.isFollowed = isFollowed
-            self.collectionView.reloadData()
+            DispatchQueue.main.async { self.collectionView.reloadData() }
         }
     }
     
@@ -58,7 +60,15 @@ final class ProfileVC: UICollectionViewController {
     private func fetchUserStats() {
         UserService.fetchUserStats(uid: user.uid) { userStats in
             self.user.stats = userStats
-            self.collectionView.reloadData()
+            DispatchQueue.main.async { self.collectionView.reloadData() }
+        }
+    }
+    
+    
+    private func fetchUserPosts() {
+        PostService.fetchUserProfilePosts(forUser: user.uid) { posts in
+            self.posts = posts
+            DispatchQueue.main.async { self.collectionView.reloadData() }
         }
     }
 }
@@ -67,11 +77,12 @@ final class ProfileVC: UICollectionViewController {
 //MARK: - UICollectionViewDataSource
 extension ProfileVC {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCell.reuseID, for: indexPath) as! ProfileCell
+        cell.viewModel   = PostViewModel(post: posts[indexPath.row])
         return cell
     }
     
@@ -86,7 +97,11 @@ extension ProfileVC {
 
 //MARK: - UICollectionViewDelegate
 extension ProfileVC {
-    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let feedVC      = FeedVC(collectionViewLayout: UICollectionViewFlowLayout())
+        feedVC.post     = posts[indexPath.row]
+        navigationController?.pushViewController(feedVC, animated: true)
+    }
 }
 
 
@@ -120,13 +135,13 @@ extension ProfileVC: ProfileHeaderDelegateProtocol {
             //UNFOLLOW USER
             UserService.unfollow(uid: user.uid) { error in
                 self.user.isFollowed = false
-                self.collectionView.reloadData()
+                DispatchQueue.main.async { self.collectionView.reloadData() }
             }
         } else {
             //FOLLOW USER
             UserService.follow(uid: user.uid) { error in
                 self.user.isFollowed = true
-                self.collectionView.reloadData()
+                DispatchQueue.main.async { self.collectionView.reloadData() }
             }
         }
     }

@@ -74,7 +74,10 @@ struct UserService {
             let followers = snapshot?.documents.count ?? 0
             COLLECTION_FOLLOWING.document(uid).collection(FirebaseEnum.userFollowing).getDocuments { snapshot, _ in
                 let following = snapshot?.documents.count ?? 0
-                completion(UserStats(followers: followers, following: following))
+                COLLECTION_POSTS.whereField("ownerUid", isEqualTo: uid).getDocuments { snapshot, _ in
+                    let posts = snapshot?.documents.count ?? 0
+                    completion(UserStats(followers: followers, following: following, userPosts: posts))
+                }
             }
         }
     }

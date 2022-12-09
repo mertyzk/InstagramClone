@@ -10,5 +10,5 @@ import Foundation
 struct UserStats {
     let followers: Int
     let following: Int
-    //let userPosts: Int
+    let userPosts: Int
 }
