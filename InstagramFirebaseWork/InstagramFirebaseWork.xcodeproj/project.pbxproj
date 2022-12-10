@@ -26,6 +26,7 @@
 		E25217E32928168200566974 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25217E22928168200566974 /* CustomTextField.swift */; };
 		E2542041294474C20026E201 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2542040294474C20026E201 /* CommentVC.swift */; };
 		E2542044294476190026E201 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2542043294476190026E201 /* CommentCell.swift */; };
+		E254204729447E550026E201 /* CommentInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E254204629447E550026E201 /* CommentInputAccesoryView.swift */; };
 		E26A1E8029327A350093E181 /* SearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26A1E7F29327A350093E181 /* SearchCellViewModel.swift */; };
 		E270EDEB292D28DD00B1C473 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270EDEA292D28DD00B1C473 /* ProfileCell.swift */; };
 		E270EDED292D293000B1C473 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270EDEC292D293000B1C473 /* ProfileHeader.swift */; };
@@ -73,6 +74,7 @@
 		E25217E22928168200566974 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		E2542040294474C20026E201 /* CommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
 		E2542043294476190026E201 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		E254204629447E550026E201 /* CommentInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccesoryView.swift; sourceTree = "<group>"; };
 		E26A1E7F29327A350093E181 /* SearchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellViewModel.swift; sourceTree = "<group>"; };
 		E270EDEA292D28DD00B1C473 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		E270EDEC292D293000B1C473 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
@@ -156,7 +158,7 @@
 			children = (
 				E2BC5784290A799F00849714 /* AppResources */,
 				E23195F9290683A4008BF8CA /* Model */,
-				E23195F8290683A2008BF8CA /* View */,
+				E23195F8290683A2008BF8CA /* CustomViews */,
 				E23195F729068398008BF8CA /* ViewModel */,
 				E23195F629068395008BF8CA /* Controller */,
 				E2BC577D290A782500849714 /* Extensions */,
@@ -215,14 +217,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		E23195F8290683A2008BF8CA /* View */ = {
+		E23195F8290683A2008BF8CA /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				E254204529447E2C0026E201 /* Views */,
 				E241FB56293B7B6800B46725 /* TextViews */,
 				E25217E529281D6800566974 /* Cells */,
 				E25217E429281D6000566974 /* TextFields */,
 			);
-			path = View;
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		E23195F9290683A4008BF8CA /* Model */ = {
@@ -276,6 +279,14 @@
 				E2542043294476190026E201 /* CommentCell.swift */,
 			);
 			path = Comment;
+			sourceTree = "<group>";
+		};
+		E254204529447E2C0026E201 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E254204629447E550026E201 /* CommentInputAccesoryView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E26A1E7D29327A020093E181 /* Search */ = {
@@ -570,6 +581,7 @@
 				E23195FB29068488008BF8CA /* IFTabBarController.swift in Sources */,
 				E23195E3290680B6008BF8CA /* SceneDelegate.swift in Sources */,
 				E2BC5781290A785000849714 /* UIButton+Ext.swift in Sources */,
+				E254204729447E550026E201 /* CommentInputAccesoryView.swift in Sources */,
 				E29B12212926909700989E45 /* RegisterVC.swift in Sources */,
 				E241FB58293B7B7D00B46725 /* InputTextView.swift in Sources */,
 				E25217E32928168200566974 /* CustomTextField.swift in Sources */,
