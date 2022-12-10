@@ -86,6 +86,7 @@ extension FeedVC {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.reuseID, for: indexPath) as! FeedCell
+        item.delegate = self
         if let post = post {
             item.viewModel = PostViewModel(post: post)
         } else {
@@ -105,5 +106,14 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
         height     += 110
         
         return CGSize(width: width, height: height)
+    }
+}
+
+
+//MARK: - FeedCellProtocolDelegate
+extension FeedVC: FeedCellProtocolDelegate {
+    func cell(_ cell: FeedCell, showCommentsFor post: Post) {
+        let commentVC = CommentVC(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(commentVC, animated: true)
     }
 }

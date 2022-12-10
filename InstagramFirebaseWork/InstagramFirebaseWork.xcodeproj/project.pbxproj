@@ -24,6 +24,8 @@
 		E2489388292BF56B002F31F2 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2489387292BF56B002F31F2 /* ImageUploader.swift */; };
 		E248938A292BF572002F31F2 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2489389292BF572002F31F2 /* AuthService.swift */; };
 		E25217E32928168200566974 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25217E22928168200566974 /* CustomTextField.swift */; };
+		E2542041294474C20026E201 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2542040294474C20026E201 /* CommentVC.swift */; };
+		E2542044294476190026E201 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2542043294476190026E201 /* CommentCell.swift */; };
 		E26A1E8029327A350093E181 /* SearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26A1E7F29327A350093E181 /* SearchCellViewModel.swift */; };
 		E270EDEB292D28DD00B1C473 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270EDEA292D28DD00B1C473 /* ProfileCell.swift */; };
 		E270EDED292D293000B1C473 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270EDEC292D293000B1C473 /* ProfileHeader.swift */; };
@@ -69,6 +71,8 @@
 		E2489387292BF56B002F31F2 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		E2489389292BF572002F31F2 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E25217E22928168200566974 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		E2542040294474C20026E201 /* CommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
+		E2542043294476190026E201 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		E26A1E7F29327A350093E181 /* SearchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellViewModel.swift; sourceTree = "<group>"; };
 		E270EDEA292D28DD00B1C473 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		E270EDEC292D293000B1C473 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 		E23195F629068395008BF8CA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E254203F294474A50026E201 /* Comment */,
 				E29B121F2926907900989E45 /* Authentication */,
 				E2BE5D3E2928EDC300F7D7FC /* Feed */,
 				E2BE5D412928EDFF00F7D7FC /* ImageSelector */,
@@ -249,11 +254,28 @@
 		E25217E529281D6800566974 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E2542042294476080026E201 /* Comment */,
 				E2FB545D29312A8B0043B580 /* Search */,
 				E2C54C43292FFBD80029E18F /* Feed */,
 				E2C54C42292FFBD00029E18F /* Profile */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		E254203F294474A50026E201 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				E2542040294474C20026E201 /* CommentVC.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		E2542042294476080026E201 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				E2542043294476190026E201 /* CommentCell.swift */,
+			);
+			path = Comment;
 			sourceTree = "<group>";
 		};
 		E26A1E7D29327A020093E181 /* Search */ = {
@@ -515,12 +537,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2FB54592930F88D0043B580 /* User.swift in Sources */,
+				E2542041294474C20026E201 /* CommentVC.swift in Sources */,
 				E23195FF29068DBF008BF8CA /* SearchVC.swift in Sources */,
 				E2FB54572930F5610043B580 /* UserService.swift in Sources */,
 				E2BE5D442928FBEB00F7D7FC /* AuthenticationViewModelProtocol.swift in Sources */,
 				E2BC577A290A77A600849714 /* FeedCell.swift in Sources */,
 				E270EDEB292D28DD00B1C473 /* ProfileCell.swift in Sources */,
 				E29B12232926909F00989E45 /* LoginVC.swift in Sources */,
+				E2542044294476190026E201 /* CommentCell.swift in Sources */,
 				E2BC577F290A784300849714 /* UIViewController+Ext.swift in Sources */,
 				E2B190D62938DE85002D5426 /* UserStats.swift in Sources */,
 				E26A1E8029327A350093E181 /* SearchCellViewModel.swift in Sources */,

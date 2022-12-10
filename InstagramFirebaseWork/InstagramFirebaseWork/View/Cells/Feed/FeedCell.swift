@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol FeedCellProtocolDelegate: AnyObject {
+    func cell(_ cell: FeedCell, showCommentsFor post: Post)
+}
+
 class FeedCell: UICollectionViewCell {
     
     //MARK: - Properties
     static let reuseID = "feedCell"
     var viewModel: PostViewModel? { didSet { configure() } }
+    weak var delegate: FeedCellProtocolDelegate?
+    
     
     //MARK: - UI Elements
     private lazy var profileImageView: UIImageView = {
@@ -51,6 +57,7 @@ class FeedCell: UICollectionViewCell {
         let button                          = UIButton(type: .system)
         button.setImage(FeedImages.comment, for: .normal)
         button.isUserInteractionEnabled     = true
+        button.addTarget(self, action: #selector(commentsClicked), for: .touchUpInside)
         return button
     }()
     
@@ -135,6 +142,12 @@ class FeedCell: UICollectionViewCell {
     //MARK: - @objc Actions
     @objc func userNameButtonClicked(){
         print("Clicked at username button")
+    }
+    
+    
+    @objc func commentsClicked(){
+        guard let viewModel = viewModel else { return }
+        delegate?.cell(self, showCommentsFor: viewModel.post)
     }
 }
 
