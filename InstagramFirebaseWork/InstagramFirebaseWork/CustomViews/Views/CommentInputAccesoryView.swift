@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol CommentInputAccesoryViewDelegateProtocol: AnyObject {
+    func inputView(_ inputView: CommentInputAccesoryView, wantsToUploadComment comment: String)
+}
+
 class CommentInputAccesoryView: UIView {
     
     //MARK: - Properties
+    weak var delegate: CommentInputAccesoryViewDelegateProtocol?
     
     
     //MARK: - UI Elements
@@ -42,9 +47,14 @@ class CommentInputAccesoryView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override var intrinsicContentSize: CGSize {
+        return .zero
+    }
+    
     
     //MARK: - Helpers
     private func configureUIElements() {
+        backgroundColor  = .white
         autoresizingMask = .flexibleHeight
         
         let padding: CGFloat = 8
@@ -59,15 +69,15 @@ class CommentInputAccesoryView: UIView {
         divider.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, height: 0.5)
     }
     
-
-    override var intrinsicContentSize: CGSize {
-        return .zero
+    func clearTheCommentTextView() {
+        commentTextView.text                      = nil
+        commentTextView.placeHolderLabel.isHidden = false
     }
-    
+
     
     
     //MARK: - @objc Actions
     @objc private func postButtonClicked() {
-        
+        delegate?.inputView(self, wantsToUploadComment: commentTextView.text)
     }
 }

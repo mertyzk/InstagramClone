@@ -14,7 +14,7 @@ class InputTextView: UITextView {
 
     
     //MARK: - UIElements
-    private lazy var placeHolderLabel: UILabel = {
+    lazy var placeHolderLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
         return label

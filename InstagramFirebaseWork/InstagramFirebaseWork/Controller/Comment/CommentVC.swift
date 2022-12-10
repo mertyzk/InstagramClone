@@ -13,6 +13,7 @@ class CommentVC: UICollectionViewController {
     private lazy var commentInputView: CommentInputAccesoryView = {
         let frame                         = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
         let ciaView                       = CommentInputAccesoryView(frame: frame)
+        ciaView.delegate                  = self
         return ciaView
     }()
 
@@ -33,7 +34,6 @@ class CommentVC: UICollectionViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    
     override var inputAccessoryView: UIView? {
         get { return commentInputView }
     }
@@ -46,7 +46,9 @@ class CommentVC: UICollectionViewController {
     
     //MARK: - Helpers
     private func configureCollectionView(){
-        collectionView.backgroundColor    = .white
+        collectionView.backgroundColor      = .white
+        collectionView.alwaysBounceVertical = true
+        collectionView.keyboardDismissMode  = .interactive
         collectionView.register(CommentCell.self, forCellWithReuseIdentifier: CommentCell.reuseID)
     }
     
@@ -60,7 +62,7 @@ class CommentVC: UICollectionViewController {
 //MARK: - UICollectionViewDataSource
 extension CommentVC {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 2
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -74,5 +76,13 @@ extension CommentVC {
 extension CommentVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 75)
+    }
+}
+
+
+//MARK: - CommentInputAccesoryViewDelegateProtocol
+extension CommentVC: CommentInputAccesoryViewDelegateProtocol {
+    func inputView(_ inputView: CommentInputAccesoryView, wantsToUploadComment comment: String) {
+        inputView.clearTheCommentTextView()
     }
 }
