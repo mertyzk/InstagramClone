@@ -36,6 +36,7 @@ final class UploadPostVC: UIViewController {
         textView.layer.cornerRadius       = 10
         textView.layer.borderWidth        = 0.3
         textView.layer.borderColor        = UIColor.lightGray.cgColor
+        textView.placeholderShouldCenter  = false
         textView.delegate = self
         return textView
     }()

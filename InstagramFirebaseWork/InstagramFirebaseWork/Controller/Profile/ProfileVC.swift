@@ -9,7 +9,7 @@ import UIKit
 
 final class ProfileVC: UICollectionViewController {
     
-    //MARK: - Variables
+    //MARK: - Properties
     private var user: User
     private var posts: [Post] = []
     
@@ -48,7 +48,7 @@ final class ProfileVC: UICollectionViewController {
     }
     
     
-    //MARK: - API
+    //MARK: - API Operations
     private func checkIfUserFollowState(){
         UserService.checkIfUserIsFollowed(uid: user.uid) { isFollowed in
             self.user.isFollowed = isFollowed

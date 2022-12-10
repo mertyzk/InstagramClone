@@ -20,6 +20,17 @@ class InputTextView: UITextView {
         return label
     }()
     
+    lazy var placeholderShouldCenter = true {
+        didSet {
+            if placeholderShouldCenter {
+                placeHolderLabel.anchor(left: leftAnchor, right: rightAnchor, paddingLeft: 8)
+                placeHolderLabel.centerY(inView: self)
+            } else {
+                placeHolderLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: 10, paddingLeft: 8)
+            }
+        }
+    }
+    
     
     //MARK: - Lifecycle
     override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -36,7 +47,6 @@ class InputTextView: UITextView {
     //MARK: - Configure
     private func configureTextView() {
         addSubview(placeHolderLabel)
-        placeHolderLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: 10, paddingLeft: 8)
     }
     
     

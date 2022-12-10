@@ -13,7 +13,7 @@ protocol AuthenticationProtocol: AnyObject {
 
 final class LoginVC: UIViewController {
     
-    //MARK: - Variables
+    //MARK: - Properties
     private var viewModel = LoginViewModel()
     weak var delegate: AuthenticationProtocol?
     

@@ -26,7 +26,7 @@ class CommentCell: UICollectionViewCell {
     private lazy var commentLabel: UILabel = {
         let label                    = UILabel()
         let attributedString         = NSMutableAttributedString(string: "testUser  ", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
-        attributedString.append(NSAttributedString(string: "Test amacli bir yorum string denemesidir...asdasjdkajdajkdajsdjadjaokdjhokjfghsdkhjlfhbsdhjkfgshjkdldfgsjhkldfgsdjkhlfglsdkjfgheoşjfgudfaopghsdorfgushdfomcshdorghscedı", attributes: [.font : UIFont.systemFont(ofSize: 14)]))
+        attributedString.append(NSAttributedString(string: "Test amacli bir yorum string denemesidir...", attributes: [.font : UIFont.systemFont(ofSize: 14)]))
         label.attributedText         = attributedString
         return label
     }()

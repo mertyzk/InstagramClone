@@ -27,7 +27,7 @@ final class SearchVC: UITableViewController {
     }
     
     
-    //MARK: - API
+    //MARK: - API Operations
     func fetchUsers(){
         UserService.fetchUsers { users in
             self.users = users

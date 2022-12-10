@@ -10,7 +10,7 @@ import Firebase
 
 final class FeedVC: UICollectionViewController {
     
-    //MARK: - Variables
+    //MARK: - Properties
     private var posts = [Post]()
     var post: Post?
     
@@ -44,7 +44,7 @@ final class FeedVC: UICollectionViewController {
     }
     
     
-    //MARK: - API
+    //MARK: - API Operations
     private func fetchPosts(isRenewable: Bool) {
         guard post == nil else { return }
         PostService.fetchPosts { posts in

@@ -9,7 +9,7 @@ import UIKit
 
 final class RegisterVC: UIViewController {
     
-    //MARK: - Variables
+    //MARK: - Properties
     private var viewModel                     = RegisterViewModel()
     private var profileImage: UIImage?
     weak var delegate: AuthenticationProtocol?
