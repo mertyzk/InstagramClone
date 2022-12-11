@@ -12,7 +12,7 @@ import YPImagePicker
 final class IFTabBarController: UITabBarController {
     
     //MARK: - Properties
-    private var user: User? {
+    var user: User? {
         didSet {
             guard let user = user else { return }
             configureVCs(withUser: user)

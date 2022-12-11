@@ -14,13 +14,13 @@ struct PostService {
     static func uploadPost(caption: String, image: UIImage, user: User, completion: @escaping FirestoreCompletion) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         ImageUploader.uploadImage(image: image) { imageURL in
-            let data = ["caption": caption,
-                        "timestamp": Timestamp(date: Date()),
-                        "likes": 0,
-                        "imageURL": imageURL,
-                        "ownerUid": uid,
-                        "ownerImageURL": user.profileImageURL,
-                        "ownerUsername": user.username]
+            let data = [FirebaseConstants.caption: caption,
+                        FirebaseConstants.timestamp: Timestamp(date: Date()),
+                        FirebaseConstants.likes: 0,
+                        FirebaseConstants.imageURL: imageURL,
+                        FirebaseConstants.ownerUid: uid,
+                        FirebaseConstants.ownerImageURL: user.profileImageURL,
+                        FirebaseConstants.ownerUsername: user.username]
             as [String: Any]
             COLLECTION_POSTS.addDocument(data: data, completion: completion)
         }
@@ -29,7 +29,7 @@ struct PostService {
     
     //MARK: - Fetch Posts
     static func fetchPosts(completion: @escaping([Post]) -> Void) {
-        COLLECTION_POSTS.order(by: "timestamp", descending: true).getDocuments { snapshot, error in
+        COLLECTION_POSTS.order(by: FirebaseConstants.timestamp, descending: true).getDocuments { snapshot, error in
             guard let documents = snapshot?.documents else { return }
             let posts = documents.map({ Post(postId: $0.documentID, dictionary: $0.data()) })
             completion(posts)
@@ -39,7 +39,7 @@ struct PostService {
     
     //MARK: - Fetch User Profile Posts
     static func fetchUserProfilePosts(forUser uid: String, completion: @escaping ([Post]) -> Void) {
-        let query = COLLECTION_POSTS.whereField("ownerUid", isEqualTo: uid)
+        let query = COLLECTION_POSTS.whereField(FirebaseConstants.ownerUid, isEqualTo: uid)
         query.getDocuments { snapshot, error in
             guard let documents = snapshot?.documents else { return }
             var posts = documents.map({ Post(postId: $0.documentID, dictionary: $0.data()) })

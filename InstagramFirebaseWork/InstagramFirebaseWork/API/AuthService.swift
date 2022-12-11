@@ -27,11 +27,11 @@ struct AuthService {
                     return
                 }
                 guard let uid = result?.user.uid else { return }
-                let documentData: [String : Any] = ["email": credentials.email,
-                                            "fullname": credentials.fullname,
-                                            "profileImageURL": imageURL,
-                                            "uid": uid,
-                                            "username": credentials.username]
+                let documentData: [String : Any] = [FirebaseConstants.email           : credentials.email,
+                                                    FirebaseConstants.fullname        : credentials.fullname,
+                                                    FirebaseConstants.profileImageURL : imageURL,
+                                                    FirebaseConstants.uid             : uid,
+                                                    FirebaseConstants.username        : credentials.username]
                 COLLECTION_USERS.document(uid).setData(documentData, completion: completion)
             }
         }
@@ -42,8 +42,4 @@ struct AuthService {
     static func login(withEmail email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password, completion: completion)
     }
-    
-    
-    
-    
 }

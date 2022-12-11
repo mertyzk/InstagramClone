@@ -43,8 +43,8 @@ struct UserService {
     //MARK: - Follow to a user
     static func follow(uid: String, completion: @escaping FirestoreCompletion) {
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
-        COLLECTION_FOLLOWING.document(currentUID).collection(FirebaseEnum.userFollowing).document(uid).setData([:]) { error in
-            COLLECTION_FOLLOWERS.document(uid).collection(FirebaseEnum.userFollowers).document(currentUID).setData([:], completion: completion)
+        COLLECTION_FOLLOWING.document(currentUID).collection(FirebaseConstants.userFollowing).document(uid).setData([:]) { error in
+            COLLECTION_FOLLOWERS.document(uid).collection(FirebaseConstants.userFollowers).document(currentUID).setData([:], completion: completion)
         }
     }
     
@@ -52,8 +52,8 @@ struct UserService {
     //MARK: - Unfollow to a user
     static func unfollow(uid: String, completion: @escaping FirestoreCompletion) {
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
-        COLLECTION_FOLLOWING.document(currentUID).collection(FirebaseEnum.userFollowing).document(uid).delete { error in
-            COLLECTION_FOLLOWERS.document(uid).collection(FirebaseEnum.userFollowers).document(currentUID).delete(completion: completion)
+        COLLECTION_FOLLOWING.document(currentUID).collection(FirebaseConstants.userFollowing).document(uid).delete { error in
+            COLLECTION_FOLLOWERS.document(uid).collection(FirebaseConstants.userFollowers).document(currentUID).delete(completion: completion)
         }
     }
     
@@ -61,7 +61,7 @@ struct UserService {
     //MARK: - Check Follow State
     static func checkIfUserIsFollowed(uid: String, completion: @escaping (Bool) -> Void) {
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
-        COLLECTION_FOLLOWING.document(currentUID).collection(FirebaseEnum.userFollowing).document(uid).getDocument { snapshot, error in
+        COLLECTION_FOLLOWING.document(currentUID).collection(FirebaseConstants.userFollowing).document(uid).getDocument { snapshot, error in
             guard let isFollowed = snapshot?.exists else { return }
             completion(isFollowed)
         }
@@ -70,11 +70,11 @@ struct UserService {
     
     //MARK: - Fetch User's Stats
     static func fetchUserStats(uid: String, completion: @escaping (UserStats) -> Void) {
-        COLLECTION_FOLLOWERS.document(uid).collection(FirebaseEnum.userFollowers).getDocuments { snapshot, _ in
+        COLLECTION_FOLLOWERS.document(uid).collection(FirebaseConstants.userFollowers).getDocuments { snapshot, _ in
             let followers = snapshot?.documents.count ?? 0
-            COLLECTION_FOLLOWING.document(uid).collection(FirebaseEnum.userFollowing).getDocuments { snapshot, _ in
+            COLLECTION_FOLLOWING.document(uid).collection(FirebaseConstants.userFollowing).getDocuments { snapshot, _ in
                 let following = snapshot?.documents.count ?? 0
-                COLLECTION_POSTS.whereField("ownerUid", isEqualTo: uid).getDocuments { snapshot, _ in
+                COLLECTION_POSTS.whereField(FirebaseConstants.ownerUid, isEqualTo: uid).getDocuments { snapshot, _ in
                     let posts = snapshot?.documents.count ?? 0
                     completion(UserStats(followers: followers, following: following, userPosts: posts))
                 }

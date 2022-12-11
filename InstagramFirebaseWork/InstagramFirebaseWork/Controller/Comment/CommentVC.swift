@@ -9,6 +9,10 @@ import UIKit
 
 class CommentVC: UICollectionViewController {
     
+    //MARK: - Properties
+    private let post: Post
+    
+    
     //MARK: - UI Elements
     private lazy var commentInputView: CommentInputAccesoryView = {
         let frame                         = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
@@ -18,6 +22,17 @@ class CommentVC: UICollectionViewController {
     }()
 
     
+    //MARK: - Custom Initializer
+    init(post: Post) {
+        self.post = post
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +40,17 @@ class CommentVC: UICollectionViewController {
         configureUI()
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
     }
     
+    
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
     }
+    
     
     override var inputAccessoryView: UIView? {
         get { return commentInputView }
@@ -83,6 +101,12 @@ extension CommentVC: UICollectionViewDelegateFlowLayout {
 //MARK: - CommentInputAccesoryViewDelegateProtocol
 extension CommentVC: CommentInputAccesoryViewDelegateProtocol {
     func inputView(_ inputView: CommentInputAccesoryView, wantsToUploadComment comment: String) {
-        inputView.clearTheCommentTextView()
+        guard let IFTabBar = tabBarController as? IFTabBarController else { return }
+        guard let user = IFTabBar.user else { return }
+        showLoader(true)
+        CommentService.uploadComment(comment: comment, postID: post.postID, user: user) { error in
+            self.showLoader(false)
+            inputView.clearTheCommentTextView()
+        }
     }
 }

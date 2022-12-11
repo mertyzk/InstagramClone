@@ -113,7 +113,7 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
 //MARK: - FeedCellProtocolDelegate
 extension FeedVC: FeedCellProtocolDelegate {
     func cell(_ cell: FeedCell, showCommentsFor post: Post) {
-        let commentVC = CommentVC(collectionViewLayout: UICollectionViewFlowLayout())
+        let commentVC = CommentVC(post: post)
         navigationController?.pushViewController(commentVC, animated: true)
     }
 }
