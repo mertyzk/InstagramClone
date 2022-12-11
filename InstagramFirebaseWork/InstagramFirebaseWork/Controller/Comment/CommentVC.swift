@@ -11,6 +11,7 @@ class CommentVC: UICollectionViewController {
     
     //MARK: - Properties
     private let post: Post
+    private var comments: [Comment] = []
     
     
     //MARK: - UI Elements
@@ -38,6 +39,7 @@ class CommentVC: UICollectionViewController {
         super.viewDidLoad()
         configureCollectionView()
         configureUI()
+        fetchComments()
     }
     
     
@@ -62,6 +64,15 @@ class CommentVC: UICollectionViewController {
     }
     
     
+    //MARK: - API Operations
+    func fetchComments() {
+        CommentService.fetchComments(forPost: post.postID) { comments in
+            self.comments = comments
+            DispatchQueue.main.async { self.collectionView.reloadData() }
+        }
+    }
+    
+    
     //MARK: - Helpers
     private func configureCollectionView(){
         collectionView.backgroundColor      = .white
@@ -80,7 +91,7 @@ class CommentVC: UICollectionViewController {
 //MARK: - UICollectionViewDataSource
 extension CommentVC {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return comments.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
