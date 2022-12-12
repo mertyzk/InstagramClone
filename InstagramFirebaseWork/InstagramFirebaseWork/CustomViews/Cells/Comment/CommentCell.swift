@@ -11,7 +11,11 @@ class CommentCell: UICollectionViewCell {
     
     //MARK: - Properties
     static let reuseID = "commentCell"
-    
+    var viewModel: CommentViewModel? {
+        didSet {
+            configure()
+        }
+    }
     
     //MARK: - UI Elements
     private lazy var profileImageView: UIImageView = {
@@ -23,13 +27,7 @@ class CommentCell: UICollectionViewCell {
         return imageView
     }()
     
-    private lazy var commentLabel: UILabel = {
-        let label                    = UILabel()
-        let attributedString         = NSMutableAttributedString(string: "testUser  ", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
-        attributedString.append(NSAttributedString(string: "Test amacli bir yorum string denemesidir...", attributes: [.font : UIFont.systemFont(ofSize: 14)]))
-        label.attributedText         = attributedString
-        return label
-    }()
+    private lazy var commentLabel = UILabel()
     
     
     //MARK: - LifeCycle
@@ -46,8 +44,17 @@ class CommentCell: UICollectionViewCell {
     //MARK: - Helpers
     private func configureUIElements(){
         addSubviewsExt(profileImageView, commentLabel)
+        commentLabel.numberOfLines = 0
         profileImageView.centerY(inView: self, leftAnchor: leftAnchor, paddingLeft: 12)
         profileImageView.setDimensions(height: 40, width: 40)
         commentLabel.centerY(inView: profileImageView, leftAnchor: profileImageView.rightAnchor, paddingLeft: 12)
+        commentLabel.anchor(right: rightAnchor, paddingRight: 12)
+    }
+    
+    
+    private func configure() {
+        guard let viewModel = viewModel else { return }
+        profileImageView.sd_setImage(with: viewModel.profileImageURL)
+        commentLabel.attributedText = viewModel.commentLabelText()
     }
 }
