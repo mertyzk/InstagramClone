@@ -29,6 +29,7 @@ enum FeedImages {
     static let likeUnselected     = UIImage(named: "like_unselected")?.withRenderingMode(.alwaysOriginal)
     static let comment            = UIImage(named: "comment")?.withRenderingMode(.alwaysOriginal)
     static let send2              = UIImage(named: "send2")?.withRenderingMode(.alwaysOriginal)
+    static let likeSelected       = UIImage(named: "like_selected")
 }
 
 
@@ -69,4 +70,6 @@ enum FirebaseConstants {
     static let uid                = "uid"
     static let comment            = "comment"
     static let comments           = "comments"
+    static let post_likes         = "post-likes"
+    static let user_likes         = "user-likes"
 }

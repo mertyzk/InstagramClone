@@ -122,7 +122,14 @@ extension FeedVC: FeedCellProtocolDelegate {
         if post.didLike {
             print("unlike yapacaksın")
         } else {
-            print("like yapacaksın")
+            PostService.likePost(post: post) { error in
+                if let error = error {
+                    print("Post like operation is failed: \(error)")
+                    return
+                }
+                cell.postLikeButton.setImage(FeedImages.likeSelected, for: .normal)
+                cell.postLikeButton.tintColor = .red
+            }
         }
     }
 }

@@ -49,4 +49,22 @@ struct PostService {
             completion(posts)
         }
     }
+    
+    
+    //MARK: - Like a post
+    static func likePost(post: Post, completion: @escaping FirestoreCompletion){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        COLLECTION_POSTS.document(post.postID).updateData([FirebaseConstants.likes: post.likes + 1])
+        
+        COLLECTION_POSTS.document(post.postID).collection(FirebaseConstants.post_likes).document(uid).setData([:]) { _ in
+            COLLECTION_USERS.document(uid).collection(FirebaseConstants.user_likes).document(post.postID).setData([:], completion: completion)
+        }
+    }
+    
+    
+    //MARK: - Unlike a post
+    static func unlikePost(){
+        
+    }
 }

@@ -47,7 +47,7 @@ class FeedCell: UICollectionViewCell {
         return imageArea
     }()
     
-    private lazy var postLikeButton: UIButton = {
+    lazy var postLikeButton: UIButton = {
         let button                          = UIButton(type: .system)
         button.setImage(FeedImages.likeUnselected, for: .normal)
         button.isUserInteractionEnabled     = true
