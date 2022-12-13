@@ -116,4 +116,13 @@ extension FeedVC: FeedCellProtocolDelegate {
         let commentVC = CommentVC(post: post)
         navigationController?.pushViewController(commentVC, animated: true)
     }
+    
+    func cell(_ cell: FeedCell, didLike post: Post) {
+        cell.viewModel?.post.didLike.toggle()
+        if post.didLike {
+            print("unlike yapacaksın")
+        } else {
+            print("like yapacaksın")
+        }
+    }
 }
