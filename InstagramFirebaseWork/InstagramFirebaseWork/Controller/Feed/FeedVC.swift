@@ -120,7 +120,14 @@ extension FeedVC: FeedCellProtocolDelegate {
     func cell(_ cell: FeedCell, didLike post: Post) {
         cell.viewModel?.post.didLike.toggle()
         if post.didLike {
-            print("unlike yapacaksın")
+            PostService.unlikePost(post: post) { error in
+                if let error = error {
+                    print("Post unline operation is failed: \(error)")
+                    return
+                }
+                cell.postLikeButton.setImage(FeedImages.likeUnselected, for: .normal)
+                cell.postLikeButton.tintColor = .black
+            }
         } else {
             PostService.likePost(post: post) { error in
                 if let error = error {
