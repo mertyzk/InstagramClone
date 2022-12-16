@@ -11,7 +11,11 @@ import Firebase
 final class FeedVC: UICollectionViewController {
     
     //MARK: - Properties
-    private var posts = [Post]()
+    private var posts = [Post]() {
+        didSet {
+            DispatchQueue.main.async { self.collectionView.reloadData() }
+        }
+    }
     var post: Post?
     
     //MARK: - Lifecycle
@@ -49,9 +53,8 @@ final class FeedVC: UICollectionViewController {
         guard post == nil else { return }
         PostService.fetchPosts { posts in
             self.posts = posts
-            if isRenewable { self.collectionView.refreshControl?.endRefreshing() }
             self.checkUserLikeAtPost()
-            DispatchQueue.main.async { self.collectionView.reloadData() }
+            if isRenewable { self.collectionView.refreshControl?.endRefreshing() }
         }
     }
     
