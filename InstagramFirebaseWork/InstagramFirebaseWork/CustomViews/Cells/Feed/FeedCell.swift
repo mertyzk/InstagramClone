@@ -10,6 +10,7 @@ import UIKit
 protocol FeedCellProtocolDelegate: AnyObject {
     func cell(_ cell: FeedCell, showCommentsFor post: Post)
     func cell(_ cell: FeedCell, didLike post: Post)
+    func cell(_ cell: FeedCell, wantsToShowProfileFor uid: String)
 }
 
 class FeedCell: UICollectionViewCell {
@@ -28,6 +29,8 @@ class FeedCell: UICollectionViewCell {
         imageArea.layer.cornerRadius        = 20
         imageArea.contentMode               = .scaleAspectFill
         imageArea.backgroundColor           = .lightGray
+        let tapGestureRecognizer            = UIGestureRecognizer(target: self, action: #selector(areaOfGoToUserProfile))
+        imageArea.addGestureRecognizer(tapGestureRecognizer)
         return imageArea
     }()
     
@@ -35,7 +38,7 @@ class FeedCell: UICollectionViewCell {
         let button                          = UIButton(type: .system)
         button.titleLabel?.font             = UIFont.boldSystemFont(ofSize: 13)
         button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(userNameButtonClicked), for: .touchUpInside)
+        button.addTarget(self, action: #selector(areaOfGoToUserProfile), for: .touchUpInside)
         return button
     }()
     
@@ -144,8 +147,11 @@ class FeedCell: UICollectionViewCell {
     
     
     //MARK: - @objc Actions
-    @objc func userNameButtonClicked(){
-        print("Clicked at username button")
+    @objc func areaOfGoToUserProfile(){
+        guard let viewModel = viewModel else { return }
+        delegate?.cell(self, wantsToShowProfileFor: viewModel.post.ownerUid)
+        print("gönderilen : \(viewModel.post.ownerUsername)")
+        print("FeedVC'ye gönderrilen uid: \(viewModel.post.ownerUid)")
     }
     
     
