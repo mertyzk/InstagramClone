@@ -50,7 +50,19 @@ final class FeedVC: UICollectionViewController {
         PostService.fetchPosts { posts in
             self.posts = posts
             if isRenewable { self.collectionView.refreshControl?.endRefreshing() }
+            self.checkUserLikeAtPost()
             DispatchQueue.main.async { self.collectionView.reloadData() }
+        }
+    }
+    
+    
+    private func checkUserLikeAtPost() {
+        self.posts.forEach { post in
+            PostService.checkIfUserLikedPost(post: post) { didLike in
+                if let index = self.posts.firstIndex(where: { $0.postID == post.postID }) {
+                    self.posts[index].didLike = didLike
+                }
+            }
         }
     }
 
@@ -127,6 +139,7 @@ extension FeedVC: FeedCellProtocolDelegate {
                 }
                 cell.postLikeButton.setImage(FeedImages.likeUnselected, for: .normal)
                 cell.postLikeButton.tintColor = .black
+                cell.viewModel?.post.likes    = post.likes - 1
             }
         } else {
             PostService.likePost(post: post) { error in
@@ -136,6 +149,7 @@ extension FeedVC: FeedCellProtocolDelegate {
                 }
                 cell.postLikeButton.setImage(FeedImages.likeSelected, for: .normal)
                 cell.postLikeButton.tintColor = .red
+                cell.viewModel?.post.likes    = post.likes + 1
             }
         }
     }

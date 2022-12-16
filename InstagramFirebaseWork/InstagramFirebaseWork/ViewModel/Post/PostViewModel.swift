@@ -5,7 +5,7 @@
 //  Created by Macbook Air on 5.12.2022.
 //
 
-import Foundation
+import UIKit
 
 struct PostViewModel {
     
@@ -29,6 +29,14 @@ struct PostViewModel {
     
     var likes: Int {
         return post.likes
+    }
+    
+    var likeButtonTintColor: UIColor {
+        return post.didLike ? .red : .black
+    }
+    
+    var likeButtonImage: UIImage {
+        return post.didLike ? FeedImages.likeSelected! : FeedImages.likeUnselected!
     }
     
     var likesLabelText: String {
