@@ -52,10 +52,13 @@ let COLLECTION_USERS              = Firestore.firestore().collection("users")
 let COLLECTION_FOLLOWERS          = Firestore.firestore().collection("followers")
 let COLLECTION_FOLLOWING          = Firestore.firestore().collection("following")
 let COLLECTION_POSTS              = Firestore.firestore().collection("posts")
+let COLLECTION_NOTIFICATIONS      = Firestore.firestore().collection("notifications")
+
 
 enum FirebaseConstants {
     static let userFollowing      = "user-following"
     static let userFollowers      = "user-followers"
+    static let userNotifications  = "user-notifications"
     static let ownerUid           = "ownerUid"
     static let caption            = "caption"
     static let timestamp          = "timestamp"
@@ -68,8 +71,11 @@ enum FirebaseConstants {
     static let username           = "username"
     static let fullname           = "fullname"
     static let uid                = "uid"
+    static let id                 = "id"
     static let comment            = "comment"
     static let comments           = "comments"
     static let post_likes         = "post-likes"
     static let user_likes         = "user-likes"
+    static let type               = "type"
+    static let postid             = "postID"
 }

@@ -165,6 +165,8 @@ extension FeedVC: FeedCellProtocolDelegate {
                 cell.postLikeButton.setImage(FeedImages.likeSelected, for: .normal)
                 cell.postLikeButton.tintColor = .red
                 cell.viewModel?.post.likes    = post.likes + 1
+                
+                NotificationService.uploadNotification(toUID: post.ownerUid, type: .like, post: post)
             }
         }
     }
