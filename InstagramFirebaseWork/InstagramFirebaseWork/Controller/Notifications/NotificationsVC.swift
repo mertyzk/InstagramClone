@@ -9,10 +9,17 @@ import UIKit
 
 final class NotificationsVC: UITableViewController {
     
+    //MARK: - Properties
+    private var notifications = [Notification]() {
+        didSet { DispatchQueue.main.async { self.tableView.reloadData() } }
+    }
+    
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        fetchNotifications()
     }
     
     
@@ -24,13 +31,22 @@ final class NotificationsVC: UITableViewController {
         tableView.separatorStyle = .none
         tableView.register(NotificationCell.self, forCellReuseIdentifier: NotificationCell.reuseID)
     }
+    
+    
+    //MARK: - API Operations
+    private func fetchNotifications() {
+        NotificationService.fetchNotifications { notifications in
+            self.notifications = notifications
+            print(notifications)
+        }
+    }
 }
 
 
 //MARK: - UITableViewDataSource
 extension NotificationsVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return notifications.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
