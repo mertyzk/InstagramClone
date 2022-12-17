@@ -150,8 +150,6 @@ class FeedCell: UICollectionViewCell {
     @objc func areaOfGoToUserProfile(){
         guard let viewModel = viewModel else { return }
         delegate?.cell(self, wantsToShowProfileFor: viewModel.post.ownerUid)
-        print("gönderilen : \(viewModel.post.ownerUsername)")
-        print("FeedVC'ye gönderrilen uid: \(viewModel.post.ownerUid)")
     }
     
     

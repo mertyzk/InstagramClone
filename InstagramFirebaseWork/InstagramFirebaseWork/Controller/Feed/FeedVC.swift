@@ -130,9 +130,7 @@ extension FeedVC: FeedCellProtocolDelegate {
     //CLICK THEN GO TO USER PROFILE FROM FEEDVC
     func cell(_ cell: FeedCell, wantsToShowProfileFor uid: String) {
         UserService.fetchUser(withUid: uid) { user in
-            print("FEED VC'YE gelen UID : \(uid)")
             let ProfileVC = ProfileVC(user: user)
-            print("FEED VC'De protokol implement edildi \(user.username)")
             self.navigationController?.pushViewController(ProfileVC, animated: true)
         }
     }
