@@ -129,6 +129,8 @@ extension ProfileVC: UICollectionViewDelegateFlowLayout {
 //MARK: - ProfileHeaderDelegateProtocol
 extension ProfileVC: ProfileHeaderDelegateProtocol {
     func header(_ profileHeader: ProfileHeader, editProfileButtonClicked user: User) {
+        guard let IFTabBar = tabBarController as? IFTabBarController else { return }
+        guard let currentUser = IFTabBar.user else { return }
         if user.isCurrentUser {
             print("show edit profile here")
         } else if user.isFollowed {
@@ -142,6 +144,7 @@ extension ProfileVC: ProfileHeaderDelegateProtocol {
             UserService.follow(uid: user.uid) { error in
                 self.user.isFollowed = true
                 DispatchQueue.main.async { self.collectionView.reloadData() }
+                NotificationService.uploadNotification(toUid: user.uid, fromUser: currentUser, type: .follow)
             }
         }
     }
