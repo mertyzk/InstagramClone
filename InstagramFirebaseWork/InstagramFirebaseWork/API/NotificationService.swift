@@ -10,14 +10,16 @@ import Firebase
 struct NotificationService {
     
     //MARK: - Upload a notification
-    static func uploadNotification(toUID uid: String, type: NotificationType, post: Post? = nil) {
+    static func uploadNotification(toUid uid: String, fromUser: User, type: NotificationType, post: Post? = nil) {
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
         guard uid != currentUID else { return }
         let document = COLLECTION_NOTIFICATIONS.document(uid).collection(FirebaseConstants.userNotifications).document()
         var data: [String: Any]  = [FirebaseConstants.timestamp: Timestamp(date: Date()),
-                                    FirebaseConstants.uid: currentUID,
+                                    FirebaseConstants.uid: fromUser.uid,
                                     FirebaseConstants.type: type.rawValue,
-                                    FirebaseConstants.id: document.documentID]
+                                    FirebaseConstants.id: document.documentID,
+                                    FirebaseConstants.userProfileImage: fromUser.profileImageURL,
+                                    FirebaseConstants.username: fromUser.username]
         if let post = post {
             data["postID"]       = post.postID
             data["postImageURL"] = post.imageURL

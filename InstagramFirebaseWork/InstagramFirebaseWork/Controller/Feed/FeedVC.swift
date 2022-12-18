@@ -145,6 +145,8 @@ extension FeedVC: FeedCellProtocolDelegate {
     
     //STATUS FOR LIKE OF POST
     func cell(_ cell: FeedCell, didLike post: Post) {
+        guard let IFTabBar = tabBarController as? IFTabBarController else { return }
+        guard let user = IFTabBar.user else { return }
         cell.viewModel?.post.didLike.toggle()
         if post.didLike {
             PostService.unlikePost(post: post) { error in
@@ -166,9 +168,8 @@ extension FeedVC: FeedCellProtocolDelegate {
                 cell.postLikeButton.tintColor = .red
                 cell.viewModel?.post.likes    = post.likes + 1
                 
-                NotificationService.uploadNotification(toUID: post.ownerUid, type: .like, post: post)
+                NotificationService.uploadNotification(toUid: post.ownerUid, fromUser: user, type: .like, post: post)
             }
         }
     }
-    
 }

@@ -78,4 +78,5 @@ enum FirebaseConstants {
     static let user_likes         = "user-likes"
     static let type               = "type"
     static let postid             = "postID"
+    static let userProfileImage   = "userProfileImageURL"
 }

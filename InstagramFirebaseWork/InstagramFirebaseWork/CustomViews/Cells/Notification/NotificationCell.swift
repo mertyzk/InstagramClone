@@ -11,6 +11,11 @@ class NotificationCell: UITableViewCell {
     
     //MARK: - Properties
     static let reuseID = "NotificationCell"
+    var viewModel: NotificationViewModel? {
+        didSet {
+            configureData()
+        }
+    }
     
     
     //MARK: - UI Elements
@@ -25,8 +30,7 @@ class NotificationCell: UITableViewCell {
     
     private lazy var infoLabel: UILabel     = {
         let label                           = UILabel()
-        label.font                          = UIFont.boldSystemFont(ofSize: 14)
-        label.text                          = "TEST TEST"
+        label.numberOfLines                 = 0
         return label
     }()
     
@@ -77,6 +81,14 @@ class NotificationCell: UITableViewCell {
         postImageView.centerY(inView: self)
         postImageView.anchor(right: rightAnchor, paddingRight: 12, width: 40, height: 40)
         followButton.isHidden = true
+    }
+    
+    
+    private func configureData() {
+        guard let viewModel      = viewModel else { return }
+        infoLabel.attributedText = viewModel.notificationMessage
+        profileImageView.sd_setImage(with: viewModel.profileImageURL)
+        postImageView.sd_setImage(with: viewModel.postImageURL)
     }
     
     

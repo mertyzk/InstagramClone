@@ -26,18 +26,22 @@ enum NotificationType: Int {
 
 struct Notification {
     let uid: String
-    let postImageURL: String?
+    let postImageURL: String
     let postID: String?
     let timestamp: Timestamp
     let type: NotificationType
     let id: String
+    let userProfileImageURL: String
+    let username: String
     
     init(dictionary: [String: Any]) {
-        self.postID        = dictionary["postID"] as? String ?? ""
-        self.id            = dictionary["id"] as? String ?? ""
-        self.uid           = dictionary["uid"] as? String ?? ""
-        self.postImageURL  = dictionary["postImageURL"] as? String ?? ""
-        self.type          = NotificationType(rawValue: dictionary["type"] as? Int ?? 0) ?? .like
-        self.timestamp     = dictionary["timestamp"] as? Timestamp ?? Timestamp(date: Date())
+        self.postID               = dictionary["postID"] as? String ?? ""
+        self.id                   = dictionary["id"] as? String ?? ""
+        self.uid                  = dictionary["uid"] as? String ?? ""
+        self.postImageURL         = dictionary["postImageURL"] as? String ?? ""
+        self.type                 = NotificationType(rawValue: dictionary["type"] as? Int ?? 0) ?? .like
+        self.timestamp            = dictionary["timestamp"] as? Timestamp ?? Timestamp(date: Date())
+        self.userProfileImageURL  = dictionary["userProfileImageURL"] as? String ?? ""
+        self.username             = dictionary["username"] as? String ?? ""
     }
 }
