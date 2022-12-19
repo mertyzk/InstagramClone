@@ -24,11 +24,20 @@ struct NotificationViewModel {
     }
     
     var notificationMessage: NSAttributedString {
+        let ofSize: CGFloat = 16
         let username = notification.username
         let message  = notification.type.notificationMessage
-        let attText  = NSMutableAttributedString(string: username, attributes: [.font : UIFont.boldSystemFont(ofSize: 18)])
-        attText.append(NSAttributedString(string: message, attributes: [.font : UIFont.systemFont(ofSize: 18)]))
-        attText.append(NSAttributedString(string: "  2m", attributes: [.font : UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.lightGray]))
+        let attText  = NSMutableAttributedString(string: username, attributes: [.font : UIFont.boldSystemFont(ofSize: ofSize)])
+        attText.append(NSAttributedString(string: message, attributes: [.font : UIFont.systemFont(ofSize: ofSize)]))
+        attText.append(NSAttributedString(string: "  2m", attributes: [.font : UIFont.systemFont(ofSize: ofSize), .foregroundColor: UIColor.lightGray]))
         return attText
+    }
+    
+    var shouldHidePostImage: Bool {
+        return self.notification.type == .follow
+    }
+    
+    var shouldHideFollowButton: Bool {
+        return self.notification.type != .follow
     }
 }

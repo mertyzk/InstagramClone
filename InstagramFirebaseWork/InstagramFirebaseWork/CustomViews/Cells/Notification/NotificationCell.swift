@@ -75,11 +75,12 @@ class NotificationCell: UITableViewCell {
         profileImageView.anchor(top: topAnchor, left: leftAnchor, paddingTop: 10, paddingLeft: 20)
         profileImageView.setDimensions(height: 50, width: 50)
         profileImageView.layer.cornerRadius = 25
-        infoLabel.centerY(inView: profileImageView, leftAnchor: profileImageView.rightAnchor, paddingLeft: 8)
         followButton.centerY(inView: self)
-        followButton.anchor(right: rightAnchor, paddingRight: 12, width: 100, height: 32)
+        followButton.anchor(right: rightAnchor, paddingRight: 12, width: 88, height: 32)
         postImageView.centerY(inView: self)
         postImageView.anchor(right: rightAnchor, paddingRight: 12, width: 40, height: 40)
+        infoLabel.centerY(inView: profileImageView, leftAnchor: profileImageView.rightAnchor, paddingLeft: 8)
+        infoLabel.anchor(right: followButton.leftAnchor, paddingRight: 4)
         followButton.isHidden = true
     }
     
@@ -87,6 +88,8 @@ class NotificationCell: UITableViewCell {
     private func configureData() {
         guard let viewModel      = viewModel else { return }
         infoLabel.attributedText = viewModel.notificationMessage
+        followButton.isHidden    = viewModel.shouldHideFollowButton
+        postImageView.isHidden   = viewModel.shouldHidePostImage
         profileImageView.sd_setImage(with: viewModel.profileImageURL)
         postImageView.sd_setImage(with: viewModel.postImageURL)
     }

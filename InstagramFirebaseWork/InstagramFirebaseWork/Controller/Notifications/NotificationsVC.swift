@@ -19,6 +19,9 @@ final class NotificationsVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         fetchNotifications()
     }
     

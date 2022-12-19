@@ -134,7 +134,7 @@ extension CommentVC: CommentInputAccesoryViewDelegateProtocol {
         CommentService.uploadComment(comment: comment, postID: post.postID, user: currentUser) { error in
             self.showLoader(false)
             inputView.clearTheCommentTextView()
-            NotificationService.uploadNotification(toUid: self.post.ownerUid, fromUser: currentUser, type: .comment)
+            NotificationService.uploadNotification(toUid: self.post.ownerUid, fromUser: currentUser, type: .comment, post: self.post)
         }
     }
 }
