@@ -74,23 +74,35 @@ extension NotificationsVC {
 
 
 //MARK: - UITableViewDelegate
-/*extension NotificationsVC {
+extension NotificationsVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("did select")
+        let userUID = notifications[indexPath.row].uid
+        UserService.fetchUser(withUid: userUID) { user in
+            let profileVC = ProfileVC(user: user)
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
     }
-}*/
+}
 
 //MARK: - NotificationCellDelegateProtocol
 extension NotificationsVC: NotificationCellDelegateProtocol {
     func cell(_ cell: NotificationCell, wantsToFollow uid: String) {
-        print("DEBUG: FOLLOW USER HERE")
+        UserService.follow(uid: uid) { _ in
+            cell.viewModel?.notification.userIsFollowed.toggle()
+        }
     }
     
     func cell(_ cell: NotificationCell, wantsToUnfollow uid: String) {
-        print("DEBUG: UNFOLLOW USER HERE")
+        UserService.unfollow(uid: uid) { _ in
+            cell.viewModel?.notification.userIsFollowed.toggle()
+        }
     }
     
     func cell(_ cell: NotificationCell, wantsToViewPost postId: String) {
-        print("DEBUG: GO TO POST HERE")
+        PostService.fetchPost(withPostID: postId) { post in
+            let feedVC  = FeedVC(collectionViewLayout: UICollectionViewFlowLayout())
+            feedVC.post = post
+            self.navigationController?.pushViewController(feedVC, animated: true)
+        }
     }
 }

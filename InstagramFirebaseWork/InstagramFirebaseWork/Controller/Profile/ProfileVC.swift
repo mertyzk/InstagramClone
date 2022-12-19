@@ -29,9 +29,12 @@ final class ProfileVC: UICollectionViewController {
         super.viewDidLoad()
         configureUI()
         configureCollectionView()
-        checkIfUserFollowState()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         fetchUserStats()
         fetchUserPosts()
+        checkIfUserFollowState()
     }
 
     

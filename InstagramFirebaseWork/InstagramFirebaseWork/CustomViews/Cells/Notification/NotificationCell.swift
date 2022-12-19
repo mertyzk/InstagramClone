@@ -32,8 +32,6 @@ class NotificationCell: UITableViewCell {
         imageArea.contentMode               = .scaleAspectFill
         imageArea.backgroundColor           = .lightGray
         imageArea.isUserInteractionEnabled  = true
-        let gestureRecognizer               = UITapGestureRecognizer(target: self, action: #selector(profileImageClicked))
-        imageArea.addGestureRecognizer(gestureRecognizer)
         return imageArea
     }()
     
@@ -81,7 +79,7 @@ class NotificationCell: UITableViewCell {
     private func configureUI(){
         backgroundColor = .white
         selectionStyle  = .none
-        addSubviewsExt(profileImageView, infoLabel, followButton, postImageView)
+        contentView.addSubviewsExt(profileImageView, infoLabel, followButton, postImageView)
         profileImageView.anchor(top: topAnchor, left: leftAnchor, paddingTop: 10, paddingLeft: 20)
         profileImageView.setDimensions(height: 50, width: 50)
         profileImageView.layer.cornerRadius = 25
@@ -111,18 +109,17 @@ class NotificationCell: UITableViewCell {
     //MARK: - @objc Actions
     @objc private func followButtonClicked() {
         guard let viewModel      = viewModel else { return }
-        delegate?.cell(self, wantsToFollow: viewModel.uid)
+        switch viewModel.userIsFollowed {
+        case true:
+            delegate?.cell(self, wantsToUnfollow: viewModel.uid)
+        case false:
+            delegate?.cell(self, wantsToFollow: viewModel.uid)
+        }
     }
     
     
     @objc private func postImageClicked() {
         guard let viewModel      = viewModel else { return }
-        delegate?.cell(self, wantsToFollow: viewModel.postId!)
+        delegate?.cell(self, wantsToViewPost: viewModel.postId!)
     }
-    
-    
-    @objc private func profileImageClicked() {
-        print("profile image tapped")
-    }
-    
 }
