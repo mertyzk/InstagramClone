@@ -7,10 +7,17 @@
 
 import UIKit
 
+protocol NotificationCellDelegateProtocol: AnyObject {
+    func cell(_ cell: NotificationCell, wantsToFollow uid: String)
+    func cell(_ cell: NotificationCell, wantsToUnfollow uid: String)
+    func cell(_ cell: NotificationCell, wantsToViewPost postId: String)
+}
+
 class NotificationCell: UITableViewCell {
     
     //MARK: - Properties
     static let reuseID = "NotificationCell"
+    weak var delegate: NotificationCellDelegateProtocol?
     var viewModel: NotificationViewModel? {
         didSet {
             configureData()
@@ -24,7 +31,9 @@ class NotificationCell: UITableViewCell {
         imageArea.clipsToBounds             = true
         imageArea.contentMode               = .scaleAspectFill
         imageArea.backgroundColor           = .lightGray
-        
+        imageArea.isUserInteractionEnabled  = true
+        let gestureRecognizer               = UITapGestureRecognizer(target: self, action: #selector(profileImageClicked))
+        imageArea.addGestureRecognizer(gestureRecognizer)
         return imageArea
     }()
     
@@ -39,6 +48,7 @@ class NotificationCell: UITableViewCell {
         imageArea.contentMode               = .scaleAspectFill
         imageArea.clipsToBounds             = true
         imageArea.backgroundColor           = .systemGray5
+        imageArea.isUserInteractionEnabled  = true
         let gestureRecognizer               = UITapGestureRecognizer(target: self, action: #selector(postImageClicked))
         imageArea.addGestureRecognizer(gestureRecognizer)
         return imageArea
@@ -86,10 +96,13 @@ class NotificationCell: UITableViewCell {
     
     
     private func configureData() {
-        guard let viewModel      = viewModel else { return }
-        infoLabel.attributedText = viewModel.notificationMessage
-        followButton.isHidden    = viewModel.shouldHideFollowButton
-        postImageView.isHidden   = viewModel.shouldHidePostImage
+        guard let viewModel          = viewModel else { return }
+        infoLabel.attributedText     = viewModel.notificationMessage
+        followButton.isHidden        = viewModel.shouldHideFollowButton
+        postImageView.isHidden       = viewModel.shouldHidePostImage
+        followButton.backgroundColor = viewModel.followButtonBGColor
+        followButton.setTitleColor(viewModel.followButtonTextColor, for: .normal)
+        followButton.setTitle(viewModel.followButtonText, for: .normal)
         profileImageView.sd_setImage(with: viewModel.profileImageURL)
         postImageView.sd_setImage(with: viewModel.postImageURL)
     }
@@ -97,12 +110,19 @@ class NotificationCell: UITableViewCell {
     
     //MARK: - @objc Actions
     @objc private func followButtonClicked() {
-        print("follow button clicked")
+        guard let viewModel      = viewModel else { return }
+        delegate?.cell(self, wantsToFollow: viewModel.uid)
     }
     
     
     @objc private func postImageClicked() {
-        print("follow button clicked")
+        guard let viewModel      = viewModel else { return }
+        delegate?.cell(self, wantsToFollow: viewModel.postId!)
+    }
+    
+    
+    @objc private func profileImageClicked() {
+        print("profile image tapped")
     }
     
 }

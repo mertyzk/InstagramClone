@@ -137,13 +137,13 @@ extension ProfileVC: ProfileHeaderDelegateProtocol {
             //UNFOLLOW USER
             UserService.unfollow(uid: user.uid) { error in
                 self.user.isFollowed = false
-                DispatchQueue.main.async { self.collectionView.reloadData() }
+                self.fetchUserStats()
             }
         } else {
             //FOLLOW USER
             UserService.follow(uid: user.uid) { error in
                 self.user.isFollowed = true
-                DispatchQueue.main.async { self.collectionView.reloadData() }
+                self.fetchUserStats()
                 NotificationService.uploadNotification(toUid: user.uid, fromUser: currentUser, type: .follow)
             }
         }

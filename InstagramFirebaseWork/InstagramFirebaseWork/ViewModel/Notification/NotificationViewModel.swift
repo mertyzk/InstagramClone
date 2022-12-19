@@ -15,6 +15,14 @@ struct NotificationViewModel {
         self.notification = notification
     }
     
+    var postId: String? {
+        return notification.postID
+    }
+    
+    var uid: String {
+        return notification.uid
+    }
+    
     var postImageURL: URL? {
         return URL(string: notification.postImageURL)
     }
@@ -39,5 +47,17 @@ struct NotificationViewModel {
     
     var shouldHideFollowButton: Bool {
         return self.notification.type != .follow
+    }
+    
+    var followButtonText: String {
+        return notification.userIsFollowed ? "Following" : "Follow"
+    }
+    
+    var followButtonBGColor: UIColor {
+        return notification.userIsFollowed ? UIColor.white : UIColor.systemBlue
+    }
+    
+    var followButtonTextColor: UIColor {
+        return notification.userIsFollowed ? UIColor.systemBlue : UIColor.white
     }
 }

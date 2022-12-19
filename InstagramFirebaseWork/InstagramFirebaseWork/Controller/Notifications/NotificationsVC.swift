@@ -40,6 +40,19 @@ final class NotificationsVC: UITableViewController {
     private func fetchNotifications() {
         NotificationService.fetchNotifications { notifications in
             self.notifications = notifications
+            self.checkIfUserIsFollowed()
+        }
+    }
+    
+    
+    private func checkIfUserIsFollowed() {
+        notifications.forEach { notification in
+            guard notification.type == .follow else { return }
+            UserService.checkIfUserIsFollowed(uid: notification.uid) { isFollowed in
+                if let index = self.notifications.firstIndex(where: { $0.id == notification.id }) {
+                    self.notifications[index].userIsFollowed = isFollowed
+                }
+            }
         }
     }
 }
@@ -52,8 +65,32 @@ extension NotificationsVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NotificationCell.reuseID, for: indexPath) as! NotificationCell
+        let cell       = tableView.dequeueReusableCell(withIdentifier: NotificationCell.reuseID, for: indexPath) as! NotificationCell
         cell.viewModel = NotificationViewModel(notification: notifications[indexPath.row])
+        cell.delegate  = self
         return cell
+    }
+}
+
+
+//MARK: - UITableViewDelegate
+/*extension NotificationsVC {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("did select")
+    }
+}*/
+
+//MARK: - NotificationCellDelegateProtocol
+extension NotificationsVC: NotificationCellDelegateProtocol {
+    func cell(_ cell: NotificationCell, wantsToFollow uid: String) {
+        print("DEBUG: FOLLOW USER HERE")
+    }
+    
+    func cell(_ cell: NotificationCell, wantsToUnfollow uid: String) {
+        print("DEBUG: UNFOLLOW USER HERE")
+    }
+    
+    func cell(_ cell: NotificationCell, wantsToViewPost postId: String) {
+        print("DEBUG: GO TO POST HERE")
     }
 }
