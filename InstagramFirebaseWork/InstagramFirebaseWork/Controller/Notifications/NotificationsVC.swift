@@ -13,6 +13,7 @@ final class NotificationsVC: UITableViewController {
     private var notifications = [Notification]() {
         didSet { DispatchQueue.main.async { self.tableView.reloadData() } }
     }
+    private let refresher = UIRefreshControl()
     
     
     //MARK: - Lifecycle
@@ -33,6 +34,8 @@ final class NotificationsVC: UITableViewController {
         tableView.rowHeight      = 80
         tableView.separatorStyle = .none
         tableView.register(NotificationCell.self, forCellReuseIdentifier: NotificationCell.reuseID)
+        refresher.addTarget(self, action: #selector(detectRefresh), for: .valueChanged)
+        tableView.refreshControl = refresher
     }
     
     
@@ -54,6 +57,14 @@ final class NotificationsVC: UITableViewController {
                 }
             }
         }
+    }
+    
+    
+    //MARK: - @objc Actions
+    @objc private func detectRefresh() {
+        notifications.removeAll()
+        fetchNotifications()
+        refresher.endRefreshing()
     }
 }
 
@@ -77,7 +88,9 @@ extension NotificationsVC {
 extension NotificationsVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let userUID = notifications[indexPath.row].uid
+        showLoader(true)
         UserService.fetchUser(withUid: userUID) { user in
+            self.showLoader(false)
             let profileVC = ProfileVC(user: user)
             self.navigationController?.pushViewController(profileVC, animated: true)
         }
@@ -87,19 +100,25 @@ extension NotificationsVC {
 //MARK: - NotificationCellDelegateProtocol
 extension NotificationsVC: NotificationCellDelegateProtocol {
     func cell(_ cell: NotificationCell, wantsToFollow uid: String) {
+        showLoader(true)
         UserService.follow(uid: uid) { _ in
+            self.showLoader(false)
             cell.viewModel?.notification.userIsFollowed.toggle()
         }
     }
     
     func cell(_ cell: NotificationCell, wantsToUnfollow uid: String) {
+        showLoader(true)
         UserService.unfollow(uid: uid) { _ in
+            self.showLoader(false)
             cell.viewModel?.notification.userIsFollowed.toggle()
         }
     }
     
     func cell(_ cell: NotificationCell, wantsToViewPost postId: String) {
+        showLoader(true)
         PostService.fetchPost(withPostID: postId) { post in
+            self.showLoader(false)
             let feedVC  = FeedVC(collectionViewLayout: UICollectionViewFlowLayout())
             feedVC.post = post
             self.navigationController?.pushViewController(feedVC, animated: true)
