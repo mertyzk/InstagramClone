@@ -148,6 +148,7 @@ extension ProfileVC: ProfileHeaderDelegateProtocol {
                 self.user.isFollowed = true
                 self.fetchUserStats()
                 NotificationService.uploadNotification(toUid: user.uid, fromUser: currentUser, type: .follow)
+                PostService.updateUserFeedAfterFollowing(user: user)
             }
         }
     }

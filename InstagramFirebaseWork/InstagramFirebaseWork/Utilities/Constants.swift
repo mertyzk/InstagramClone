@@ -79,4 +79,5 @@ enum FirebaseConstants {
     static let type               = "type"
     static let postid             = "postID"
     static let userProfileImage   = "userProfileImageURL"
+    static let user_feed          = "user-feed"
 }

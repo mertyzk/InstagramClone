@@ -51,7 +51,7 @@ final class FeedVC: UICollectionViewController {
     //MARK: - API Operations
     private func fetchPosts(isRenewable: Bool) {
         guard post == nil else { return }
-        PostService.fetchPosts { posts in
+        PostService.fetchFeedPosts { posts in
             self.posts = posts
             self.checkUserLikeAtPost()
             if isRenewable { self.collectionView.refreshControl?.endRefreshing() }
