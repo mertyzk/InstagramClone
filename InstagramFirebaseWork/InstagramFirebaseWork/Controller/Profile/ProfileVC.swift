@@ -141,6 +141,7 @@ extension ProfileVC: ProfileHeaderDelegateProtocol {
             UserService.unfollow(uid: user.uid) { error in
                 self.user.isFollowed = false
                 self.fetchUserStats()
+                PostService.updateUserFeedAfterFollowing(user: user, didFollow: false)
             }
         } else {
             //FOLLOW USER
@@ -148,7 +149,7 @@ extension ProfileVC: ProfileHeaderDelegateProtocol {
                 self.user.isFollowed = true
                 self.fetchUserStats()
                 NotificationService.uploadNotification(toUid: user.uid, fromUser: currentUser, type: .follow)
-                PostService.updateUserFeedAfterFollowing(user: user)
+                PostService.updateUserFeedAfterFollowing(user: user, didFollow: true)
             }
         }
     }
