@@ -21,6 +21,8 @@ enum LoginRegisterStrings {
     static let fullName           = "Full Name"
     static let userName           = "User Name"
     static let resetPassword      = "Reset Password"
+    static let resetSuccessString = "We sent a link to your e-mail for reset your password"
+    static let resetSuccessTitle  = "Success"
 }
 
 

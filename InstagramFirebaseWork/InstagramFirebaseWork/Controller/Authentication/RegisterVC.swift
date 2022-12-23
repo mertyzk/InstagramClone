@@ -128,7 +128,7 @@ final class RegisterVC: UIViewController {
         guard let password                    = passwordTextField.text else { return }
         guard let fullname                    = fullNameTextField.text else { return }
         guard let username                    = usernameTextField.text?.lowercased() else { return }
-        guard let profileImage = self.profileImage else { return }
+        guard let profileImage                = self.profileImage else { return }
         
         let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
         

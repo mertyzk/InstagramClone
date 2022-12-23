@@ -72,7 +72,7 @@ final class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        setNotificationObservers()
+        configureTargets()
     }
     
     
@@ -98,7 +98,7 @@ final class LoginVC: UIViewController {
     }
     
     
-    private func setNotificationObservers() {
+    private func configureTargets() {
         emailTextField.addTarget(self, action: #selector(textHasChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textHasChanged), for: .editingChanged)
     }
@@ -129,8 +129,8 @@ final class LoginVC: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         AuthService.login(withEmail: email, password: password) { result, error in
-            if error != nil {
-                print("Login error: \(error?.localizedDescription)")
+            if let error = error {
+                print(error.localizedDescription)
                 return
             }
             self.delegate?.authenticationComplete()
@@ -139,7 +139,8 @@ final class LoginVC: UIViewController {
     
     
     @objc private func forgotPasswordClicked() {
-        let resetPassVC = ResetPasswordVC()
+        let resetPassVC      = ResetPasswordVC()
+        resetPassVC.delegate = self
         navigationController?.pushViewController(resetPassVC, animated: true)
     }
 }
@@ -151,4 +152,13 @@ extension LoginVC: FormViewModel {
         loginButton.backgroundColor = viewModel.buttonBGColor
         loginButton.isEnabled       = viewModel.formIsValid
     }
+}
+
+
+//MARK: - Extension ResetPassword
+extension LoginVC: ResetPasswordControllerDelegateProtocol {
+    func controllerDidSendResetPasswordLink(_ controller: ResetPasswordVC) {
+        navigationController?.popViewController(animated: true)
+        showMessage(withTitle: LoginRegisterStrings.resetSuccessTitle, message: LoginRegisterStrings.resetSuccessString)
+    } 
 }

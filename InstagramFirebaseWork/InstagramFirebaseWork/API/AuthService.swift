@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
 
 struct AuthCredentials {
     let email: String
@@ -18,6 +18,9 @@ struct AuthCredentials {
 
 
 struct AuthService {
+    
+    typealias SendPasswordResetCallback = (Error?) -> Void
+    
     //MARK: - Register User
     static func registerUser(withCredential credentials: AuthCredentials, completion: @escaping (Error?) -> Void) {
         ImageUploader.uploadImage(image: credentials.profileImage) { imageURL in
@@ -41,5 +44,11 @@ struct AuthService {
     //MARK: - Login
     static func login(withEmail email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password, completion: completion)
+    }
+    
+    
+    //MARK: - Reset Password
+    static func resetPassword(withEmail email: String, completion: @escaping(SendPasswordResetCallback)) {
+        Auth.auth().sendPasswordReset(withEmail: email, completion: completion)
     }
 }
