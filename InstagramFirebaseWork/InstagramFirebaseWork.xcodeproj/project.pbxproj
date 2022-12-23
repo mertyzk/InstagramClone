@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9404FF146E8A96B55AE988CE /* Pods_InstagramFirebaseWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A1549339B0AAE034CB8C815 /* Pods_InstagramFirebaseWork.framework */; };
+		E206847B29561C4B00433E29 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206847A29561C4B00433E29 /* ResetPasswordVC.swift */; };
 		E2132782292A8EF700F3196E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2132781292A8EF700F3196E /* GoogleService-Info.plist */; };
 		E2198666293A424600A2DAAD /* UploadPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2198665293A424600A2DAAD /* UploadPostVC.swift */; };
 		E23195E1290680B6008BF8CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23195E0290680B6008BF8CA /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		3B03482C83A839C0CE15FD8D /* Pods-InstagramFirebaseWork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramFirebaseWork.release.xcconfig"; path = "Target Support Files/Pods-InstagramFirebaseWork/Pods-InstagramFirebaseWork.release.xcconfig"; sourceTree = "<group>"; };
 		5A1549339B0AAE034CB8C815 /* Pods_InstagramFirebaseWork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramFirebaseWork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D35B91770D00AEC76AFE5892 /* Pods-InstagramFirebaseWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramFirebaseWork.debug.xcconfig"; path = "Target Support Files/Pods-InstagramFirebaseWork/Pods-InstagramFirebaseWork.debug.xcconfig"; sourceTree = "<group>"; };
+		E206847A29561C4B00433E29 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
 		E2132781292A8EF700F3196E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E2198665293A424600A2DAAD /* UploadPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostVC.swift; sourceTree = "<group>"; };
 		E23195DD290680B6008BF8CA /* InstagramFirebaseWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramFirebaseWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -355,6 +357,7 @@
 			children = (
 				E29B12222926909F00989E45 /* LoginVC.swift */,
 				E29B12202926909700989E45 /* RegisterVC.swift */,
+				E206847A29561C4B00433E29 /* ResetPasswordVC.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2FB54592930F88D0043B580 /* User.swift in Sources */,
+				E206847B29561C4B00433E29 /* ResetPasswordVC.swift in Sources */,
 				E2542041294474C20026E201 /* CommentVC.swift in Sources */,
 				E23195FF29068DBF008BF8CA /* SearchVC.swift in Sources */,
 				E2FB54572930F5610043B580 /* UserService.swift in Sources */,

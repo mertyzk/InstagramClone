@@ -20,6 +20,7 @@ enum LoginRegisterStrings {
     static let login              = "Login"
     static let fullName           = "Full Name"
     static let userName           = "User Name"
+    static let resetPassword      = "Reset Password"
 }
 
 
@@ -44,6 +45,12 @@ enum ProfileHeaderImages {
     static let gridImage          = UIImage(named: "grid")
     static let listImage          = UIImage(named: "list")
     static let bookmarkImage      = UIImage(named: "ribbon")
+}
+
+
+//MARK: - SYSImages Constants
+enum SYSImages {
+    static let chevron            = UIImage(systemName: "chevron.left")
 }
 
 

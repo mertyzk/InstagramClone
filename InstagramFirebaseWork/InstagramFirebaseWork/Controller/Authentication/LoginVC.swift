@@ -63,6 +63,7 @@ final class LoginVC: UIViewController {
     private lazy var forgotPasswordButton: UIButton = {
         let button = UIButton(type: .system)
         button.attributedTitle(firstPart: LoginRegisterStrings.forgotPassword, secondPart: LoginRegisterStrings.getHelp)
+        button.addTarget(self, action: #selector(forgotPasswordClicked), for: .touchUpInside)
         return button
     }()
     
@@ -134,6 +135,12 @@ final class LoginVC: UIViewController {
             }
             self.delegate?.authenticationComplete()
         }
+    }
+    
+    
+    @objc private func forgotPasswordClicked() {
+        let resetPassVC = ResetPasswordVC()
+        navigationController?.pushViewController(resetPassVC, animated: true)
     }
 }
 
