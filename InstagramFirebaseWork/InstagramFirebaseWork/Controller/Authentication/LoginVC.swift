@@ -139,7 +139,7 @@ final class LoginVC: UIViewController {
     
     
     @objc private func forgotPasswordClicked() {
-        let resetPassVC      = ResetPasswordVC()
+        let resetPassVC      = ResetPasswordVC(email: emailTextField.text)
         resetPassVC.delegate = self
         navigationController?.pushViewController(resetPassVC, animated: true)
     }

@@ -16,6 +16,7 @@ class ResetPasswordVC: UIViewController {
     //MARK: - Properties
     private var viewModel           = ResetPasswordViewModel()
     weak var delegate: ResetPasswordControllerDelegateProtocol?
+    var email: String?
     
     //MARK: - UI Elements
     private lazy var emailTextField = CustomTextField(placeHolder: LoginRegisterStrings.emailAdress, isSecureTextEntry: false)
@@ -54,6 +55,20 @@ class ResetPasswordVC: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureTargets()
+    }
+    
+    
+    //MARK: - Custom Initializer
+    init(email: String?) {
+        super.init(nibName: nil, bundle: nil)
+        emailTextField.text = email
+        viewModel.email     = email
+        updateForm()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     

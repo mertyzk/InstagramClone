@@ -16,7 +16,11 @@ final class FeedVC: UICollectionViewController {
             DispatchQueue.main.async { self.collectionView.reloadData() }
         }
     }
-    var post: Post?
+    var post: Post? {
+        didSet {
+            checkUserLikeAtPost()
+        }
+    }
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -60,10 +64,17 @@ final class FeedVC: UICollectionViewController {
     
     
     private func checkUserLikeAtPost() {
-        self.posts.forEach { post in
+        if let post = post {
             PostService.checkIfUserLikedPost(post: post) { didLike in
-                if let index = self.posts.firstIndex(where: { $0.postID == post.postID }) {
-                    self.posts[index].didLike = didLike
+                self.post?.didLike = didLike
+                DispatchQueue.main.async { self.collectionView.reloadData() }
+            }
+        } else {
+            posts.forEach { post in
+                PostService.checkIfUserLikedPost(post: post) { didLike in
+                    if let index = self.posts.firstIndex(where: { $0.postID == post.postID }) {
+                        self.posts[index].didLike = didLike
+                    }
                 }
             }
         }
