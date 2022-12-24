@@ -31,13 +31,21 @@ struct NotificationViewModel {
         return URL(string: notification.userProfileImageURL)
     }
     
+    var timeStampString: String? {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.second, .minute, .hour, .day, .weekOfMonth]
+        formatter.maximumUnitCount = 1
+        formatter.unitsStyle = .abbreviated
+        return formatter.string(from: notification.timestamp.dateValue(), to: Date())
+    }
+    
     var notificationMessage: NSAttributedString {
         let ofSize: CGFloat = 16
         let username = notification.username
         let message  = notification.type.notificationMessage
         let attText  = NSMutableAttributedString(string: username, attributes: [.font : UIFont.boldSystemFont(ofSize: ofSize)])
         attText.append(NSAttributedString(string: message, attributes: [.font : UIFont.systemFont(ofSize: ofSize)]))
-        attText.append(NSAttributedString(string: "  2m", attributes: [.font : UIFont.systemFont(ofSize: ofSize), .foregroundColor: UIColor.lightGray]))
+        attText.append(NSAttributedString(string: "  \(timeStampString ?? "")", attributes: [.font : UIFont.systemFont(ofSize: ofSize), .foregroundColor: UIColor.lightGray]))
         return attText
     }
     

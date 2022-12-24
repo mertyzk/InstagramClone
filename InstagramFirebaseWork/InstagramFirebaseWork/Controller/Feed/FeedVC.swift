@@ -16,9 +16,9 @@ final class FeedVC: UICollectionViewController {
             DispatchQueue.main.async { self.collectionView.reloadData() }
         }
     }
-    var post: Post? {
+    var post: Post? {
         didSet {
-            checkUserLikeAtPost()
+            DispatchQueue.main.async { self.collectionView.reloadData() }
         }
     }
     
@@ -28,6 +28,7 @@ final class FeedVC: UICollectionViewController {
         configureCollectionView()
         configureUI()
         fetchPosts(isRenewable: false)
+        checkPost()
     }
     
     
@@ -52,6 +53,13 @@ final class FeedVC: UICollectionViewController {
     }
     
     
+    private func checkPost() {
+        if post != nil {
+            checkUserLikeAtPost()
+        }
+    }
+    
+    
     //MARK: - API Operations
     private func fetchPosts(isRenewable: Bool) {
         guard post == nil else { return }
@@ -67,7 +75,6 @@ final class FeedVC: UICollectionViewController {
         if let post = post {
             PostService.checkIfUserLikedPost(post: post) { didLike in
                 self.post?.didLike = didLike
-                DispatchQueue.main.async { self.collectionView.reloadData() }
             }
         } else {
             posts.forEach { post in

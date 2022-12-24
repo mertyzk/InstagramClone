@@ -11,6 +11,10 @@ struct PostViewModel {
     
     var post: Post
     
+    init(post: Post) {
+        self.post = post
+    }
+    
     var imageURL: URL? {
         return URL(string: post.imageURL)
     }
@@ -47,7 +51,12 @@ struct PostViewModel {
         }
     }
     
-    init(post: Post) {
-        self.post = post
+    var timeStampString: String? {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.second, .minute, .hour, .day, .weekOfMonth]
+        formatter.maximumUnitCount = 1
+        formatter.unitsStyle = .full
+        return formatter.string(from: post.timestamp.dateValue(), to: Date())
     }
+
 }
