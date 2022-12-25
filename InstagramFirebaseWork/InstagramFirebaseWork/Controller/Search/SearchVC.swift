@@ -7,7 +7,11 @@
 
 import UIKit
 
-final class SearchVC: UITableViewController {
+final class SearchVC: UIViewController {
+    
+    //MARK: - UI Elements
+    private lazy var tableView = UITableView()
+    
     
     //MARK: - Properties
     private var users            = [User]()
@@ -55,12 +59,13 @@ final class SearchVC: UITableViewController {
 
 
 //MARK: - UITableViewDataSource
-extension SearchVC {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension SearchVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchMode ? filteredUsers.count : users.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.reuseID, for: indexPath) as! SearchCell
         let user = searchMode ? filteredUsers[indexPath.row] : users[indexPath.row]
         cell.viewModel = UserCellViewModel(user: user)
@@ -70,8 +75,8 @@ extension SearchVC {
 
 
 //MARK: - UITableViewDelegate
-extension SearchVC {
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+extension SearchVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = searchMode ? filteredUsers[indexPath.row] : users[indexPath.row]
         let profileVC = ProfileVC(user: user)
         navigationController?.pushViewController(profileVC, animated: true)
